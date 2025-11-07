@@ -11,6 +11,9 @@ class Controller {
     async docs(request, response) {
         return response.type("html").send((0, View_1.view)("docs.html"));
     }
+    async tos(request, response) {
+        return response.type("html").send((0, View_1.view)("tos.html"));
+    }
 }
 exports.default = new Controller();
 //# sourceMappingURL=HomeController.js.map

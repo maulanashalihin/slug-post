@@ -26,10 +26,12 @@ Route.get("/robots.txt", SitemapController.robots);
  * GET  / - Home page
  * GET  /about - About page
  * GET  /docs - Documentation page
+ * GET  /tos - Terms of Service page
  */
 Route.get("/", HomeController.index);
 Route.get("/about", HomeController.about);
 Route.get("/docs", HomeController.docs);
+Route.get("/tos", HomeController.tos);
 
 /**
  * Post Routes

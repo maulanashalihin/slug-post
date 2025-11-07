@@ -14,6 +14,10 @@ class Controller {
     public async docs (request : Request,response : Response) { 
         return response.type("html").send(view("docs.html"));
     }
+
+    public async tos (request : Request,response : Response) { 
+        return response.type("html").send(view("tos.html"));
+    }
 }
 
 export default new Controller()
