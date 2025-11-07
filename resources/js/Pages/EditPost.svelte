@@ -536,7 +536,7 @@ Write your markdown content here...
 <!-- Footer -->
 <footer class="container mx-auto px-6 py-8 mt-16 border-t border-slate-200">
         <div class="flex flex-col md:flex-row justify-between items-center text-sm text-slate-600">
-            <p>© 2024 SlugPost. Built with ❤️ by Maulana Shalihin</p>
+            <p>© 2025 SlugPost. Built with ❤️ by Maulana Shalihin</p>
              <div class="flex space-x-6 mt-4 md:mt-0">
                 <a href="/about" class="hover:text-primary-600 transition-colors">About</a>
                 <a href="https://github.com/maulanashalihin/slug-post" target="_blank" rel="noopener noreferrer" class="hover:text-primary-600 transition-colors flex items-center space-x-1">
