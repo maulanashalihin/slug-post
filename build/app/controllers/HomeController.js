@@ -5,6 +5,12 @@ class Controller {
     async index(request, response) {
         return response.type("html").send((0, View_1.view)("index.html"));
     }
+    async about(request, response) {
+        return response.type("html").send((0, View_1.view)("about.html"));
+    }
+    async docs(request, response) {
+        return response.type("html").send((0, View_1.view)("docs.html"));
+    }
 }
 exports.default = new Controller();
 //# sourceMappingURL=HomeController.js.map

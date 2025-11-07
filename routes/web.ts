@@ -13,8 +13,12 @@ const Route = new HyperExpress.Router();
  * These routes are accessible without authentication
  * ------------------------------------------------
  * GET  / - Home page
+ * GET  /about - About page
+ * GET  /docs - Documentation page
  */
 Route.get("/", HomeController.index);
+Route.get("/about", HomeController.about);
+Route.get("/docs", HomeController.docs);
 
 /**
  * Post Routes
@@ -142,6 +146,6 @@ Route.get("/:slug", PostController.show);
  * - /documents/terms.pdf
  * - /fonts/roboto.woff2
  */
-Route.get("/*", AssetController.publicFolder);
+Route.get("/public/*", AssetController.publicFolder);
 
 export default Route;

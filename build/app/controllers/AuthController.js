@@ -136,6 +136,7 @@ class AuthController {
             });
         }
         catch (error) { }
+        console.log("success");
         try {
             if (user.phone)
                 await axios_1.default.post("https://api.dripsender.id/send", {

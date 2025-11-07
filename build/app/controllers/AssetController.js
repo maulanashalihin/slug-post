@@ -106,7 +106,7 @@ class Controller {
             '.woff', '.woff2', '.ttf', '.eot',
             '.mp4', '.webm', '.mp3', '.wav'
         ];
-        const path = "public/" + request.path.replace("/", "").replaceAll("%20", " ");
+        const path = request.path.replace("/", "").replaceAll("%20", " ");
         if (!path.includes('.')) {
             return response.status(404).send('Page not found');
         }

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - SlugPost</title>
+    <meta name="description" content="Complete guide to using SlugPost - learn how to publish, edit, and manage your markdown content.">
+    <link rel="stylesheet" href="/js/index.css">
+ <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 min-h-screen">
+    
+    <!-- Navigation -->
+    <nav class="container mx-auto px-6 py-6">
+        <div class="flex items-center justify-between">
+            <a href="/" class="flex items-center space-x-2">
+                 <img src="/public/android-icon-48x48.png" alt="SLugPost Logo">
+                <span class="text-2xl font-bold text-slate-900">SlugPost</span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <a href="/" class="text-slate-600 hover:text-primary-600 transition-colors font-medium">Home</a>
+                <a href="/about" class="text-slate-600 hover:text-primary-600 transition-colors font-medium">About</a>
+                <a href="/register" class="bg-primary-600 text-white px-5 py-2 rounded-lg hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-600/30">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl">
+        
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl md:text-6xl font-bold text-slate-900 mb-4">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">Documentation</span>
+            </h1>
+            <p class="text-xl text-slate-600">Everything you need to know about using SlugPost</p>
+        </div>
+
+        <!-- Quick Start -->
+        <div class="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl shadow-xl p-8 md:p-12 mb-8 text-white">
+            <h2 class="text-3xl font-bold mb-4">Quick Start Guide</h2>
+            <p class="text-primary-100 mb-6">Get started with SlugPost in 5 simple steps:</p>
+            <ol class="space-y-3 text-lg">
+                <li class="flex items-start">
+                    <span class="bg-white text-primary-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">1</span>
+                    <span>Visit <strong>slugpost.com</strong> homepage</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="bg-white text-primary-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">2</span>
+                    <span>Paste your markdown content or upload a .md file</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="bg-white text-primary-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">3</span>
+                    <span>Choose a custom URL slug (e.g., "my-awesome-post")</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="bg-white text-primary-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">4</span>
+                    <span>Click "Publish Post"</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="bg-white text-primary-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">5</span>
+                    <span><strong>Save your edit link!</strong> It's shown only once</span>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Main Documentation Grid -->
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+            
+            <!-- Publishing -->
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
+                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600">
+                        <path d="M12 20h9"></path>
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-3">Publishing Content</h3>
+                <p class="text-slate-600 mb-4">Two ways to publish your markdown:</p>
+                <ul class="space-y-2 text-slate-600">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span><strong>Paste:</strong> Copy and paste markdown directly</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span><strong>Upload:</strong> Upload .md, .markdown, or .txt files</span>
+                    </li>
+                </ul>
+                <div class="mt-4 p-4 bg-slate-50 rounded-lg">
+                    <p class="text-sm text-slate-600"><strong>Slug Format:</strong> Only lowercase letters, numbers, and hyphens (e.g., <code class="bg-white px-2 py-1 rounded text-xs">my-post-2024</code>)</p>
+                </div>
+            </div>
+
+            <!-- Editing -->
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
+                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-600">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-3">Editing Posts</h3>
+                <p class="text-slate-600 mb-4">Use your unique edit link to update content:</p>
+                <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-4">
+                    <p class="text-sm text-orange-900 font-semibold mb-2">⚠️ Important</p>
+                    <p class="text-sm text-orange-700">The edit link is shown <strong>only once</strong> after publishing. Save it immediately in a secure place!</p>
+                </div>
+                <p class="text-slate-600 text-sm">Format: <code class="bg-slate-100 px-2 py-1 rounded text-xs">slugpost.com/your-slug/edit/token</code></p>
+                <p class="text-slate-600 text-sm mt-2">Lost your edit link? Register and claim the post to regain access.</p>
+            </div>
+
+            <!-- Claiming -->
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <line x1="19" x2="19" y1="8" y2="14"></line>
+                        <line x1="22" x2="16" y1="11" y2="11"></line>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-3">Claiming Ownership</h3>
+                <p class="text-slate-600 mb-4">Register to claim your posts and get:</p>
+                <ul class="space-y-2 text-slate-600">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Dashboard to manage all posts</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Edit without needing the edit link</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Author attribution on posts</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>View statistics and analytics</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Markdown -->
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
+                <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-700">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-3">Markdown Support</h3>
+                <p class="text-slate-600 mb-4">Full markdown syntax supported:</p>
+                <ul class="space-y-2 text-slate-600 text-sm">
+                    <li>• Headers (H1-H6)</li>
+                    <li>• Bold, italic, strikethrough</li>
+                    <li>• Lists (ordered & unordered)</li>
+                    <li>• Links and images</li>
+                    <li>• Code blocks with syntax highlighting</li>
+                    <li>• Tables</li>
+                    <li>• Blockquotes</li>
+                    <li>• Horizontal rules</li>
+                </ul>
+                <div class="mt-4 p-3 bg-slate-900 rounded-lg">
+                    <code class="text-slate-100 text-xs">**Bold** *Italic* `Code`</code>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Security Section -->
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-8 md:p-12 mb-8">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">Security & Privacy</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Edit Token Security</h3>
+                    <p class="text-slate-600 mb-4">Each post has a unique UUID token that acts as a password. Only those with the edit URL can modify content.</p>
+                    <div class="bg-slate-50 rounded-lg p-4">
+                        <p class="text-sm font-semibold text-slate-900 mb-2">Best Practices:</p>
+                        <ul class="space-y-1 text-sm text-slate-600">
+                            <li>✓ Save edit link in password manager</li>
+                            <li>✓ Don't share edit link publicly</li>
+                            <li>✓ Claim posts for permanent access</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Privacy Policy</h3>
+                    <p class="text-slate-600 mb-4">Anonymous posts store no personal information. Claimed posts only associate your name and email.</p>
+                    <div class="bg-slate-50 rounded-lg p-4">
+                        <p class="text-sm font-semibold text-slate-900 mb-2">We Never:</p>
+                        <ul class="space-y-1 text-sm text-slate-600">
+                            <li>✗ Sell your data</li>
+                            <li>✗ Share with third parties</li>
+                            <li>✗ Track without consent</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-8 md:p-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-8">Frequently Asked Questions</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">What happens if I lose my edit link?</h3>
+                    <p class="text-slate-600">If you lose your edit link and haven't claimed the post, you won't be able to edit it. However, you can register an account and claim the post using the edit link before you lose it, or contact support for assistance.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Can I delete a post?</h3>
+                    <p class="text-slate-600">Yes, you can delete posts from the edit page if you have the edit link, or from your dashboard if you've claimed the post.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Is there a limit on post length?</h3>
+                    <p class="text-slate-600">There's no strict limit, but we recommend keeping posts under 100,000 characters for optimal performance.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Can I use custom domains?</h3>
+                    <p class="text-slate-600">Custom domains are not currently supported, but all posts are accessible via slugpost.com/your-slug.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Is SlugPost open source?</h3>
+                    <p class="text-slate-600">Yes! SlugPost is completely open source. View the code and contribute on <a href="https://github.com/maulanashalihin/slug-post" target="_blank" rel="noopener noreferrer" class="text-primary-600 font-semibold hover:underline">GitHub</a>.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">What framework is SlugPost built with?</h3>
+                    <p class="text-slate-600">SlugPost is built with <a href="https://laju.dev" target="_blank" rel="noopener noreferrer" class="text-primary-600 font-semibold hover:underline">Laju.dev</a>, a modern full-stack TypeScript framework created by Maulana Shalihin.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center mt-12">
+            <p class="text-slate-600 mb-6">Ready to start publishing?</p>
+            <a href="/" class="inline-flex items-center space-x-2 bg-primary-600 text-white px-8 py-4 rounded-lg hover:bg-primary-700 transition-all font-semibold text-lg shadow-xl shadow-primary-600/30">
+                <span>Start Publishing Now</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="container mx-auto px-6 py-8 mt-16 border-t border-slate-200">
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-slate-600">
+            <p>© 2025 SlugPost. Built with ❤️ by Maulana Shalihin</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="/about" class="hover:text-primary-600 transition-colors">About</a>
+                <a href="https://github.com/maulanashalihin/slug-post" target="_blank" rel="noopener noreferrer" class="hover:text-primary-600 transition-colors flex items-center space-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+                <a href="/docs" class="hover:text-primary-600 transition-colors">Docs</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

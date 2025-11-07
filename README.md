@@ -2,6 +2,10 @@
 
 > Publish and share your markdown files instantly with beautiful web previews - no registration required!
 
+**🌐 Try it now at [slugpost.com](https://slugpost.com)**
+
+> Built with [Laju.dev](https://laju.dev) - A modern full-stack TypeScript framework
+
 ## 🎯 Problem Statement
 
 Sharing markdown files directly often results in poor readability. Recipients need to:
@@ -56,6 +60,18 @@ colors: {
 
 ## 🛠️ Tech Stack
 
+### Framework
+
+SlugPost is built on top of **[Laju.dev](https://laju.dev)**, a modern full-stack TypeScript framework created by Maulana Shalihin. Laju provides:
+
+- **⚡ High Performance** - Built on HyperExpress for blazing-fast response times
+- **📦 Modern Architecture** - Combines the best of MVC patterns with modern tooling
+- **🔧 Developer Experience** - Type-safe development with TypeScript throughout
+- **🎨 Full-Stack Integration** - Seamless integration between backend and frontend with Inertia.js
+- **🚀 Production Ready** - Battle-tested architecture with built-in best practices
+
+Learn more at [laju.dev](https://laju.dev)
+
 ### Backend
 - **[HyperExpress](https://github.com/kartikk221/hyper-express)** - High-performance web server
 - **[Knex.js](https://knexjs.org)** - SQL query builder
@@ -77,12 +93,16 @@ colors: {
 
 ## 🚀 Quick Start
 
-### Installation
+### Try Online
+
+**No installation needed!** Visit [https://slugpost.com](https://slugpost.com) to start publishing markdown instantly.
+
+### Local Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/slugpost.git
-cd slugpost
+git clone https://github.com/maulanashalihin/slug-post.git
+cd slug-post
 
 # Install dependencies
 npm install
@@ -115,10 +135,7 @@ DB_FILENAME=./dev.sqlite3
 # Application
 APP_NAME="SlugPost"
 APP_URL=http://localhost:3000
-
-# Optional: Redis for caching
-REDIS_HOST=localhost
-REDIS_PORT=6379
+ 
 ```
 
 ## 📖 Usage
@@ -340,9 +357,9 @@ APP_URL=https://slugpost.com
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+This is an open-source project! Contributions are welcome and appreciated. Please feel free to submit a Pull Request.
 
-1. Fork the repository
+1. Fork the repository at [https://github.com/maulanashalihin/slug-post](https://github.com/maulanashalihin/slug-post)
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
@@ -352,19 +369,29 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the ISC License.
 
+## 🔗 Links
+
+- **🌐 Live App**: [https://slugpost.com](https://slugpost.com) - Try it now!
+- **📦 GitHub Repository**: [https://github.com/maulanashalihin/slug-post](https://github.com/maulanashalihin/slug-post)
+- **🐛 Issues & Bug Reports**: [https://github.com/maulanashalihin/slug-post/issues](https://github.com/maulanashalihin/slug-post/issues)
+
 ## 👨‍💻 Author
 
 **Maulana Shalihin**
 
 ## 🙏 Acknowledgments
 
-- Built with the powerful [Laju Framework](https://github.com/yourusername/laju)
+- Built with **[Laju.dev](https://laju.dev)** framework by Maulana Shalihin
+- Powered by modern web technologies and best practices
 - Inspired by the need for simple, fast markdown sharing
-- Thanks to all open-source contributors
+- Thanks to all open-source contributors and the community
 
 ## 📮 Support
 
-If you have any questions or need help, please open an issue on GitHub.
+If you have any questions or need help, please:
+- Open an issue on [GitHub](https://github.com/maulanashalihin/slug-post/issues)
+- Star the repository if you find it useful ⭐
+- Share it with others who might benefit from it
 
 ---
 

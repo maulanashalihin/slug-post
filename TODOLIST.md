@@ -289,24 +289,7 @@
 - [ ] `POST /api/validate-slug` - Check slug availability
 - [ ] `GET /api/posts/:slug/stats` - Get post statistics
 
----
-
-## 🎨 UI Components (Svelte)
-
-- [ ] **MarkdownEditor** - Textarea with preview
-- [ ] **MarkdownPreview** - Rendered markdown display
-- [ ] **CopyButton** - Copy to clipboard functionality
-- [ ] **ShareButtons** - Social media sharing (optional)
-- [ ] **Toast/Notification** - Success/error messages
-- [ ] **LoadingSpinner** - Loading states
-- [ ] **SlugInput** - Custom slug input with validation
-- [ ] **FileUpload** - Drag & drop markdown file upload
-- [ ] **ClaimButton** - Claim post button with confirmation
-- [ ] **AuthForm** - Reusable login/register form components
-- [ ] **PostCard** - Display post in dashboard/list
-- [ ] **UserMenu** - User dropdown menu with logout
-
----
+--- 
 
 ## 🎯 Features Implementation
 

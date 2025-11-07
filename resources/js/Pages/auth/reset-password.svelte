@@ -21,7 +21,7 @@
 
   function submitForm() {
     if(form.password != form.password_confirmation) {
-      alert("Password dan konfirmasi password harus sama")
+      alert("Password and password confirmation must match")
       return false;
     }
 
@@ -48,40 +48,40 @@
 
         <form class="space-y-4 md:space-y-6" on:submit|preventDefault={submitForm}>
           <div>
-            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password Baru</label>
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New Password</label>
             <input 
               bind:value={form.password}
               type="password" 
               name="password" 
               id="password" 
               placeholder="••••••••" 
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:border-emerald-600 focus:outline-none block w-full py-2.5 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:border-blue-600 focus:outline-none block w-full py-2.5 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               required
             >
             <button type="button" on:click={generatePassword} class="text-xs text-gray-500 dark:text-gray-400 mt-1">Generate Password</button>
           </div>
           <div>
-            <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Konfirmasi Password</label>
+            <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
             <input 
               bind:value={form.password_confirmation}
               type="password" 
               name="confirm-password" 
               id="confirm-password" 
               placeholder="••••••••" 
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:border-emerald-600 focus:outline-none block w-full py-2.5 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:border-blue-600 focus:outline-none block w-full py-2.5 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               required
             >
           </div>
 
           <button 
             type="submit" 
-            class="w-full text-white bg-emerald-600 hover:bg-emerald-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800"
+            class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Reset Password
           </button>
 
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            Ingat password Anda? <a href="/login" use:inertia class="font-medium text-emerald-600 hover:underline dark:text-emerald-400">Login disini</a>
+            Remember your password? <a href="/login" use:inertia class="font-medium text-blue-600 hover:underline dark:text-blue-400">Login here</a>
           </p>
         </form>
       </div>

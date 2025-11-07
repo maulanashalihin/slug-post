@@ -36,7 +36,7 @@
                 <h1
                     class="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl"
                 >
-                    Reset Password
+                    Forgot Password
                 </h1>
 
                 {#if error}
@@ -53,8 +53,8 @@
                         class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-green-900 dark:text-green-400"
                         role="alert"
                     >
-                        Link reset password telah dikirim ke email atau nomor
-                        telepon Anda.
+                        Password reset link has been sent to your email or phone
+                        number.
                     </div>
                 {/if}
 
@@ -66,32 +66,32 @@
                         <label
                             for="email"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Email atau Nomor Telepon</label
+                            >Email or Phone Number</label
                         >
                         <input
                             bind:value={form.email}
                             type="text"
                             name="email"
                             id="email"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:border-emerald-600 focus:outline-none block w-full py-2.5 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                            placeholder="email@example.com atau 08xxxxxxxxxx"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:border-blue-600 focus:outline-none block w-full py-2.5 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="email@example.com"
                             required
                         />
                     </div>
 
                     <button
                         type="submit"
-                        class="w-full text-white bg-emerald-600 hover:bg-emerald-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800"
+                        class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
-                        Kirim Link Reset Password
+                        Send Reset Password Link
                     </button>
 
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                        Ingat password Anda? <a
+                        Remember your password? <a
                             href="/login"
                             use:inertia
-                            class="font-medium text-emerald-600 hover:underline dark:text-emerald-400"
-                            >Login disini</a
+                            class="font-medium text-blue-600 hover:underline dark:text-blue-400"
+                            >Login here</a
                         >
                     </p>
                 </form>

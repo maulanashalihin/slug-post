@@ -12,6 +12,8 @@ const S3Controller_1 = __importDefault(require("../app/controllers/S3Controller"
 const hyper_express_1 = __importDefault(require("hyper-express"));
 const Route = new hyper_express_1.default.Router();
 Route.get("/", HomeController_1.default.index);
+Route.get("/about", HomeController_1.default.about);
+Route.get("/docs", HomeController_1.default.docs);
 Route.get("/api/check-slug/:slug", PostController_1.default.checkSlug);
 Route.post("/publish", PostController_1.default.store);
 Route.get("/success", PostController_1.default.success);
@@ -39,6 +41,6 @@ Route.get("/claim/:slug", PostController_1.default.claim);
 Route.get("/:slug/edit/:token", PostController_1.default.edit);
 Route.post("/:slug/edit/:token", PostController_1.default.update);
 Route.get("/:slug", PostController_1.default.show);
-Route.get("/*", AssetController_1.default.publicFolder);
+Route.get("/public/*", AssetController_1.default.publicFolder);
 exports.default = Route;
 //# sourceMappingURL=web.js.map
