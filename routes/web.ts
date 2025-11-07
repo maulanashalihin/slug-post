@@ -4,9 +4,20 @@ import HomeController from "../app/controllers/HomeController";
 import PostController from "../app/controllers/PostController";
 import AssetController from "../app/controllers/AssetController";
 import S3Controller from "../app/controllers/S3Controller";
+import SitemapController from "../app/controllers/SitemapController";
 import HyperExpress from 'hyper-express';
 
 const Route = new HyperExpress.Router();
+
+/**
+ * SEO Routes
+ * Routes for search engine optimization
+ * ------------------------------------------------
+ * GET  /sitemap.xml - XML sitemap
+ * GET  /robots.txt - Robots.txt file
+ */
+Route.get("/sitemap.xml", SitemapController.sitemap);
+Route.get("/robots.txt", SitemapController.robots);
 
 /**
  * Public Routes

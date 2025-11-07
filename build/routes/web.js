@@ -9,8 +9,11 @@ const HomeController_1 = __importDefault(require("../app/controllers/HomeControl
 const PostController_1 = __importDefault(require("../app/controllers/PostController"));
 const AssetController_1 = __importDefault(require("../app/controllers/AssetController"));
 const S3Controller_1 = __importDefault(require("../app/controllers/S3Controller"));
+const SitemapController_1 = __importDefault(require("../app/controllers/SitemapController"));
 const hyper_express_1 = __importDefault(require("hyper-express"));
 const Route = new hyper_express_1.default.Router();
+Route.get("/sitemap.xml", SitemapController_1.default.sitemap);
+Route.get("/robots.txt", SitemapController_1.default.robots);
 Route.get("/", HomeController_1.default.index);
 Route.get("/about", HomeController_1.default.about);
 Route.get("/docs", HomeController_1.default.docs);
