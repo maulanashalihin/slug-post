@@ -14,6 +14,9 @@ class Controller {
     async tos(request, response) {
         return response.type("html").send((0, View_1.view)("tos.html"));
     }
+    async privacy(request, response) {
+        return response.type("html").send((0, View_1.view)("privacy.html"));
+    }
 }
 exports.default = new Controller();
 //# sourceMappingURL=HomeController.js.map

@@ -18,6 +18,10 @@ class Controller {
     public async tos (request : Request,response : Response) { 
         return response.type("html").send(view("tos.html"));
     }
+
+    public async privacy (request : Request,response : Response) { 
+        return response.type("html").send(view("privacy.html"));
+    }
 }
 
 export default new Controller()

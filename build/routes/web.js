@@ -18,6 +18,7 @@ Route.get("/", HomeController_1.default.index);
 Route.get("/about", HomeController_1.default.about);
 Route.get("/docs", HomeController_1.default.docs);
 Route.get("/tos", HomeController_1.default.tos);
+Route.get("/privacy", HomeController_1.default.privacy);
 Route.get("/api/check-slug/:slug", PostController_1.default.checkSlug);
 Route.post("/publish", PostController_1.default.store);
 Route.get("/success", PostController_1.default.success);

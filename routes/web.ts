@@ -27,11 +27,13 @@ Route.get("/robots.txt", SitemapController.robots);
  * GET  /about - About page
  * GET  /docs - Documentation page
  * GET  /tos - Terms of Service page
+ * GET  /privacy - Privacy Policy page
  */
 Route.get("/", HomeController.index);
 Route.get("/about", HomeController.about);
 Route.get("/docs", HomeController.docs);
 Route.get("/tos", HomeController.tos);
+Route.get("/privacy", HomeController.privacy);
 
 /**
  * Post Routes
