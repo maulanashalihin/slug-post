@@ -81,16 +81,6 @@
         }
     }
 
-    // Cancel and go back
-    function cancel() {
-        if (hasUnsavedChanges) {
-            if (confirm('Are you sure? Any unsaved changes will be lost.')) {
-                router.visit(`/${post.slug}`);
-            }
-        } else {
-            router.visit(`/${post.slug}`);
-        }
-    }
 
     // Claim post
     function claimPost() {
@@ -284,14 +274,7 @@
                 </button>
                 {/if}
                 
-                <button 
-                    on:click={cancel}
-                    class="bg-white border border-slate-300 text-slate-700 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:bg-slate-50 transition-all font-medium text-xs sm:text-sm"
-                >
-                    Cancel
-                </button>
-                
-                <button 
+                <button
                     on:click={submitForm}
                     disabled={isSaving || !hasUnsavedChanges}
                     class="bg-primary-600 text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-primary-700 transition-all font-medium flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed flex-1 sm:flex-none justify-center"
