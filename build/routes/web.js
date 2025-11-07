@@ -20,6 +20,7 @@ Route.get("/docs", HomeController_1.default.docs);
 Route.get("/tos", HomeController_1.default.tos);
 Route.get("/privacy", HomeController_1.default.privacy);
 Route.get("/api/check-slug/:slug", PostController_1.default.checkSlug);
+Route.post("/api/preview", PostController_1.default.preview);
 Route.post("/publish", PostController_1.default.store);
 Route.get("/success", PostController_1.default.success);
 Route.post("/api/s3/signed-url", [auth_1.default], S3Controller_1.default.getSignedUrl);

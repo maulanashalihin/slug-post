@@ -20,6 +20,7 @@
     let activeTab = 'edit'; // 'edit', 'preview', 'info'
     let previewHtml = '';
     let isSaving = false;
+    let isLoadingPreview = false;
     let lastSaved = post.updated_at;
     let hasUnsavedChanges = false;
     let isUserMenuOpen = false;
@@ -41,18 +42,32 @@
     }
 
     // Generate preview
-    function generatePreview() {
+    async function generatePreview() {
         activeTab = 'preview';
-        // Simple markdown preview
-        previewHtml = form.content
-            .replace(/^### (.*$)/gim, '<h3 class="text-2xl font-bold mt-6 mb-2">$1</h3>')
-            .replace(/^## (.*$)/gim, '<h2 class="text-3xl font-bold mt-8 mb-3">$1</h2>')
-            .replace(/^# (.*$)/gim, '<h1 class="text-4xl font-bold mb-4">$1</h1>')
-            .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
-            .replace(/\*(.*)\*/gim, '<em>$1</em>')
-            .replace(/\n\n/gim, '</p><p class="mb-4">')
-            .replace(/\n/gim, '<br/>');
-        previewHtml = '<p class="mb-4">' + previewHtml + '</p>';
+        isLoadingPreview = true;
+        
+        try {
+            const response = await fetch('/api/preview', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ content: form.content })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                previewHtml = data.html;
+            } else {
+                Toast('Failed to generate preview', 'error');
+                previewHtml = '<p class="text-red-600">Failed to generate preview. Please try again.</p>';
+            }
+        } catch (error) {
+            Toast('Failed to generate preview', 'error');
+            previewHtml = '<p class="text-red-600">Failed to generate preview. Please try again.</p>';
+        } finally {
+            isLoadingPreview = false;
+        }
     }
 
     // Submit form
@@ -403,9 +418,21 @@ Write your markdown content here...
         {#if activeTab === 'preview'}
         <!-- Preview Tab -->
         <div class="p-4 sm:p-8">
-            <div class="prose prose-slate max-w-none">
+            {#if isLoadingPreview}
+            <div class="flex items-center justify-center py-12">
+                <div class="text-center">
+                    <svg class="animate-spin h-8 w-8 text-primary-600 mx-auto mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <p class="text-slate-600">Generating preview...</p>
+                </div>
+            </div>
+            {:else}
+            <div class="prose prose-slate max-w-none prose-headings:font-bold prose-h1:text-2xl sm:prose-h1:text-4xl prose-h1:mb-3 sm:prose-h1:mb-4 prose-h2:text-xl sm:prose-h2:text-3xl prose-h2:mt-6 sm:prose-h2:mt-8 prose-h2:mb-2 sm:prose-h2:mb-3 prose-h3:text-lg sm:prose-h3:text-2xl prose-h3:mt-4 sm:prose-h3:mt-6 prose-h3:mb-2 prose-p:text-slate-700 prose-p:leading-relaxed prose-p:text-sm sm:prose-p:text-base prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline prose-code:text-primary-600 prose-code:bg-slate-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-xs sm:prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:text-xs sm:prose-pre:text-sm prose-pre:overflow-x-auto prose-img:rounded-lg prose-img:shadow-lg prose-ul:text-sm sm:prose-ul:text-base prose-ol:text-sm sm:prose-ol:text-base">
                 {@html previewHtml}
             </div>
+            {/if}
         </div>
         {/if}
 
@@ -532,3 +559,37 @@ Write your markdown content here...
             </div>
         </div>
     </footer>
+
+<style>
+    /* Override prose styling for code blocks to match highlight.js theme */
+    :global(.prose pre) {
+        background-color: #0d1117 !important;
+        color: #c9d1d9 !important;
+        padding: 1rem !important;
+        border-radius: 0.5rem !important;
+        overflow-x: auto !important;
+    }
+
+    :global(.prose pre code) {
+        background-color: transparent !important;
+        color: inherit !important;
+        padding: 0 !important;
+        font-size: 0.875rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Inline code styling */
+    :global(.prose code:not(pre code)) {
+        background-color: #f1f5f9 !important;
+        color: #2563eb !important;
+        padding: 0.125rem 0.375rem !important;
+        border-radius: 0.25rem !important;
+        font-size: 0.875em !important;
+    }
+
+    /* Ensure syntax highlighting colors are visible */
+    :global(.prose .hljs) {
+        background-color: #0d1117 !important;
+        color: #c9d1d9 !important;
+    }
+</style>

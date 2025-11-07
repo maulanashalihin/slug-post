@@ -40,6 +40,7 @@ Route.get("/privacy", HomeController.privacy);
  * Routes for handling markdown posts
  * ------------------------------------------------
  * GET  /api/check-slug/:slug - Check slug availability
+ * POST /api/preview - Preview markdown content
  * POST /publish - Create new post
  * GET  /success - Success page after publishing
  * GET  /:slug - View post
@@ -47,6 +48,7 @@ Route.get("/privacy", HomeController.privacy);
  * POST /:slug/edit/:token - Update post
  */
 Route.get("/api/check-slug/:slug", PostController.checkSlug);
+Route.post("/api/preview", PostController.preview);
 Route.post("/publish", PostController.store);
 Route.get("/success", PostController.success);
 

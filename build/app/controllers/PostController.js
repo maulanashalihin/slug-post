@@ -252,6 +252,28 @@ class PostController {
             });
         }
     }
+    async preview(request, response) {
+        try {
+            const body = await request.json();
+            const { content } = body;
+            if (!content) {
+                return response.status(400).json({
+                    error: "Content is required"
+                });
+            }
+            const htmlContent = md.render(content);
+            return response.json({
+                success: true,
+                html: htmlContent
+            });
+        }
+        catch (error) {
+            console.error("Error previewing markdown:", error);
+            return response.status(500).json({
+                error: "Failed to preview markdown"
+            });
+        }
+    }
     async claim(request, response) {
         try {
             const { slug } = request.params;

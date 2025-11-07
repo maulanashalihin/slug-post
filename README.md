@@ -393,8 +393,8 @@ This project is licensed under the ISC License.
 
 With over 15 years of experience in software development, I specialize in building modern SaaS applications and scalable web platforms. My work includes:
 
-- **[TapSite.ai](https://tapsite.ai)** - AI-powered website builder
-- **[DripSender.id](https://dripsender.id)** - Email marketing automation platform
+- **[tapsite.ai](https://tapsite.ai)** - AI-powered website builder
+- **[dripsender.id](https://dripsender.id)** - Email marketing automation platform
 - **[Laju.dev](https://laju.dev)** - Modern full-stack TypeScript framework
 - **SlugPost** - Markdown publishing platform
 

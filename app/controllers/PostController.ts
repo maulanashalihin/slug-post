@@ -345,6 +345,37 @@ class PostController {
     }
 
     /**
+     * Preview markdown content
+     * POST /api/preview
+     */
+    public async preview(request: Request, response: Response) {
+        try {
+            const body = await request.json();
+            const { content } = body;
+
+            if (!content) {
+                return response.status(400).json({
+                    error: "Content is required"
+                });
+            }
+
+            // Render markdown to HTML
+            const htmlContent = md.render(content);
+
+            return response.json({
+                success: true,
+                html: htmlContent
+            });
+
+        } catch (error) {
+            console.error("Error previewing markdown:", error);
+            return response.status(500).json({
+                error: "Failed to preview markdown"
+            });
+        }
+    }
+
+    /**
      * Initiate claim process
      * GET /claim/:slug
      */
