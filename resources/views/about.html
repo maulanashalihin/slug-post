@@ -12,77 +12,136 @@
 <body class="bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 min-h-screen">
     
     <!-- Navigation -->
-    <nav class="container mx-auto px-6 py-6">
+    <nav class="container mx-auto px-4 sm:px-6 py-4 sm:py-6">
         <div class="flex items-center justify-between">
             <a href="/" class="flex items-center space-x-2">
-               <img src="/public/android-icon-48x48.png" alt="SLugPost Logo">
-                <span class="text-2xl font-bold text-slate-900">SlugPost</span>
+               <img src="/public/android-icon-48x48.png" alt="SLugPost Logo" class="w-8 h-8 sm:w-12 sm:h-12">
+                <span class="text-xl sm:text-2xl font-bold text-slate-900">SlugPost</span>
             </a>
-            <div class="flex items-center space-x-4">
-                <a href="/" class="text-slate-600 hover:text-primary-600 transition-colors font-medium">Home</a>
-                <a href="/login" class="text-slate-600 hover:text-primary-600 transition-colors font-medium">Login</a>
-                <a href="/register" class="bg-primary-600 text-white px-5 py-2 rounded-lg hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-600/30">Sign Up</a>
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <a href="/" class="text-slate-600 hover:text-primary-600 transition-colors font-medium text-sm sm:text-base">Home</a>
+                <a href="/login" class="text-slate-600 hover:text-primary-600 transition-colors font-medium text-sm sm:text-base hidden sm:inline">Login</a>
+                <a href="/register" class="bg-primary-600 text-white px-3 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-600/30 text-sm sm:text-base">Sign Up</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-12 max-w-4xl">
+    <main class="container mx-auto px-4 sm:px-6 py-6 sm:py-12 max-w-4xl">
         
         <!-- Hero Section -->
-        <div class="text-center mb-16">
-            <div class="inline-flex items-center space-x-2 bg-primary-50 text-primary-700 px-4 py-2 rounded-full mb-6 border border-primary-100">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="text-center mb-8 sm:mb-16">
+            <div class="inline-flex items-center space-x-2 bg-primary-50 text-primary-700 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6 border border-primary-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:w-4 sm:h-4">
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="M12 16v-4"></path>
                     <path d="M12 8h.01"></path>
                 </svg>
-                <span class="text-sm font-medium">Open Source Project</span>
+                <span class="text-xs sm:text-sm font-medium">Open Source Project</span>
             </div>
-            <h1 class="text-5xl md:text-6xl font-bold text-slate-900 mb-4">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 px-2">
                 About <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">SlugPost</span>
             </h1>
-            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p class="text-base sm:text-xl text-slate-600 max-w-2xl mx-auto px-4">
                 Making markdown sharing simple, beautiful, and accessible to everyone.
             </p>
         </div>
 
-        <!-- Problem & Solution -->
-        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-8 md:p-12 mb-8">
-            <h2 class="text-3xl font-bold text-slate-900 mb-6">The Problem We Solve</h2>
-            <p class="text-lg text-slate-600 mb-6">
-                Sharing markdown files has always been a hassle. Recipients need to download files, use specific editors, 
-                and deal with formatting inconsistencies. This creates friction in communication and collaboration.
+        <!-- Origin Story -->
+        <div class="bg-gradient-to-br from-blue-50 to-slate-50 rounded-xl sm:rounded-2xl shadow-xl border border-blue-100 p-4 sm:p-8 md:p-12 mb-6 sm:mb-8">
+            <div class="flex items-start space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                <div class="flex-shrink-0">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600 sm:w-6 sm:h-6">
+                            <path d="M12 2v20M2 12h20"></path>
+                            <circle cx="12" cy="12" r="4"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-1 sm:mb-2">Why I Built This</h2>
+                    <p class="text-xs sm:text-sm text-primary-600 font-medium">A Personal Story</p>
+                </div>
+            </div>
+            
+            <p class="text-base sm:text-lg text-slate-700 mb-4 sm:mb-6 leading-relaxed">
+                I built this because I honestly felt the need. You know how it is—after using AI tools 
+                (ChatGPT, Gemini, etc.), you get markdown text output, but then you're stuck when trying to share the results...
             </p>
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">Our Solution</h3>
-            <p class="text-lg text-slate-600">
-                <strong class="text-primary-600">SlugPost</strong> transforms your markdown content into beautiful, 
-                shareable web pages instantly. No downloads, no special software, no registration required. 
-                Just paste your markdown, choose a URL, and share.
+            
+            <div class="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 mb-4 sm:mb-6 border-l-4 border-orange-500">
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-2 sm:mb-3">The Problems I Faced:</h3>
+                <ul class="space-y-2 sm:space-y-2 text-sm sm:text-base text-slate-600">
+                    <li class="flex items-start space-x-2">
+                        <span class="text-orange-500 font-bold mt-0.5 sm:mt-1 text-lg sm:text-xl">📄</span>
+                        <span class="flex-1"><strong>Send a .md file</strong> → people are too lazy to download it</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-orange-500 font-bold mt-0.5 sm:mt-1 text-lg sm:text-xl">📋</span>
+                        <span class="flex-1"><strong>Copy-paste directly to chat/email</strong> → formatting gets destroyed 😭</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-orange-500 font-bold mt-0.5 sm:mt-1 text-lg sm:text-xl">🔄</span>
+                        <span class="flex-1"><strong>Manual conversion</strong> → tedious and time-consuming</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg sm:rounded-xl p-4 sm:p-6 text-white">
+                <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">The Solution: SlugPost</h3>
+                <p class="text-primary-100 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
+                    Just paste your markdown text here, click publish, and it instantly becomes a clean, beautiful, 
+                    and responsive web page.
+                </p>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-300">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span class="font-medium">No registration required to publish</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-300">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span class="font-medium">Instant & free with no limits</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-300">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span class="font-medium">Get a shareable link that's easy to distribute</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-sm sm:text-base text-slate-600 mt-4 sm:mt-6 italic">
+                Perfect for sharing AI outputs, notes, or draft writings in a readable format. 
+                <strong class="text-primary-600">I'm very open to feedback!</strong> 🙏
             </p>
         </div>
 
         <!-- Key Features -->
-        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-8 md:p-12 mb-8">
-            <h2 class="text-3xl font-bold text-slate-900 mb-8">Key Features</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="flex space-x-4">
+        <div class="bg-white rounded-xl sm:rounded-2xl shadow-xl border border-slate-200 p-4 sm:p-8 md:p-12 mb-6 sm:mb-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-8">Key Features</h2>
+            <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                <div class="flex space-x-3 sm:space-x-4">
                     <div class="flex-shrink-0">
-                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600">
                                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                             </svg>
                         </div>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-900 mb-2">Instant Publishing</h3>
-                        <p class="text-sm text-slate-600">Your content goes live immediately. No approval process, no waiting.</p>
+                        <h3 class="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">Instant Publishing</h3>
+                        <p class="text-xs sm:text-sm text-slate-600">Your content goes live immediately. No approval process, no waiting.</p>
                     </div>
                 </div>
 
-                <div class="flex space-x-4">
+                <div class="flex space-x-3 sm:space-x-4">
                     <div class="flex-shrink-0">
-                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600">
                                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
                                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
@@ -90,14 +149,14 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-900 mb-2">Custom URLs</h3>
-                        <p class="text-sm text-slate-600">Choose memorable slugs for easy sharing and better SEO.</p>
+                        <h3 class="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">Custom URLs</h3>
+                        <p class="text-xs sm:text-sm text-slate-600">Choose memorable slugs for easy sharing and better SEO.</p>
                     </div>
                 </div>
 
-                <div class="flex space-x-4">
+                <div class="flex space-x-3 sm:space-x-4">
                     <div class="flex-shrink-0">
-                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600">
                                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
@@ -105,14 +164,14 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-900 mb-2">Secure Edit Links</h3>
-                        <p class="text-sm text-slate-600">Unique tokens ensure only you can edit your content.</p>
+                        <h3 class="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">Secure Edit Links</h3>
+                        <p class="text-xs sm:text-sm text-slate-600">Unique tokens ensure only you can edit your content.</p>
                     </div>
                 </div>
 
-                <div class="flex space-x-4">
+                <div class="flex space-x-3 sm:space-x-4">
                     <div class="flex-shrink-0">
-                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600">
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="9" cy="7" r="4"></circle>
@@ -122,14 +181,14 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-900 mb-2">Claim Ownership</h3>
-                        <p class="text-sm text-slate-600">Register later to claim and manage all your posts.</p>
+                        <h3 class="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">Claim Ownership</h3>
+                        <p class="text-xs sm:text-sm text-slate-600">Register later to claim and manage all your posts.</p>
                     </div>
                 </div>
 
-                <div class="flex space-x-4">
+                <div class="flex space-x-3 sm:space-x-4">
                     <div class="flex-shrink-0">
-                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600">
                                 <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
                                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
@@ -137,14 +196,14 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-900 mb-2">Responsive Design</h3>
-                        <p class="text-sm text-slate-600">Beautiful reading experience on any device.</p>
+                        <h3 class="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">Responsive Design</h3>
+                        <p class="text-xs sm:text-sm text-slate-600">Beautiful reading experience on any device.</p>
                     </div>
                 </div>
 
-                <div class="flex space-x-4">
+                <div class="flex space-x-3 sm:space-x-4">
                     <div class="flex-shrink-0">
-                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600">
                                 <polyline points="16 18 22 12 16 6"></polyline>
                                 <polyline points="8 6 2 12 8 18"></polyline>
@@ -152,33 +211,33 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-900 mb-2">Full Markdown Support</h3>
-                        <p class="text-sm text-slate-600">Code blocks, tables, images, and all markdown features.</p>
+                        <h3 class="font-bold text-slate-900 mb-1 sm:mb-2 text-sm sm:text-base">Full Markdown Support</h3>
+                        <p class="text-xs sm:text-sm text-slate-600">Code blocks, tables, images, and all markdown features.</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Framework -->
-        <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl shadow-xl p-8 md:p-12 mb-8 text-white">
-            <div class="flex items-start space-x-4">
+        <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-8 md:p-12 mb-6 sm:mb-8 text-white">
+            <div class="flex flex-col sm:flex-row items-start space-y-3 sm:space-y-0 sm:space-x-4">
                 <div class="flex-shrink-0">
-                    <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white sm:w-8 sm:h-8">
                             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                         </svg>
                     </div>
                 </div>
                 <div class="flex-1">
-                    <h2 class="text-3xl font-bold mb-3">Powered by Laju.dev</h2>
-                    <p class="text-slate-300 text-lg mb-4">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-2 sm:mb-3">Powered by Laju.dev</h2>
+                    <p class="text-slate-300 text-sm sm:text-lg mb-3 sm:mb-4 leading-relaxed">
                         SlugPost is built on top of <strong class="text-white">Laju.dev</strong>, a modern full-stack TypeScript framework 
                         created by Maulana Shalihin. Laju combines the best of modern web technologies into a cohesive, 
                         high-performance development experience.
                     </p>
-                    <a href="https://laju.dev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-white text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-all">
+                    <a href="https://laju.dev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-white text-slate-900 px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-slate-100 transition-all text-sm sm:text-base">
                         <span>Learn More About Laju.dev</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:w-4 sm:h-4">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" x2="21" y1="14" y2="3"></line>
@@ -189,12 +248,12 @@
         </div>
 
         <!-- Tech Stack -->
-        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-8 md:p-12 mb-8">
-            <h2 class="text-3xl font-bold text-slate-900 mb-6">Technology Stack</h2>
-            <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-xl sm:rounded-2xl shadow-xl border border-slate-200 p-4 sm:p-8 md:p-12 mb-6 sm:mb-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6">Technology Stack</h2>
+            <div class="grid sm:grid-cols-2 gap-6 sm:gap-8">
                 <div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-4">Backend</h3>
-                    <ul class="space-y-2 text-slate-600">
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-3 sm:mb-4">Backend</h3>
+                    <ul class="space-y-2 text-sm sm:text-base text-slate-600">
                         <li class="flex items-center space-x-2">
                             <svg class="w-4 h-4 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
@@ -222,8 +281,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-4">Frontend</h3>
-                    <ul class="space-y-2 text-slate-600">
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-3 sm:mb-4">Frontend</h3>
+                    <ul class="space-y-2 text-sm sm:text-base text-slate-600">
                         <li class="flex items-center space-x-2">
                             <svg class="w-4 h-4 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
@@ -254,26 +313,26 @@
         </div>
 
         <!-- Open Source -->
-        <div class="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl shadow-xl p-8 md:p-12 mb-8 text-white">
-            <div class="flex items-start space-x-4">
+        <div class="bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-8 md:p-12 mb-6 sm:mb-8 text-white">
+            <div class="flex flex-col sm:flex-row items-start space-y-3 sm:space-y-0 sm:space-x-4">
                 <div class="flex-shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor" class="text-white sm:w-12 sm:h-12">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                 </div>
-                <div>
-                    <h2 class="text-3xl font-bold mb-4">Open Source & Free</h2>
-                    <p class="text-primary-100 text-lg mb-6">
+                <div class="flex-1">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Open Source & Free</h2>
+                    <p class="text-primary-100 text-sm sm:text-lg mb-4 sm:mb-6 leading-relaxed">
                         SlugPost is completely open source and free to use. We believe in transparency and community-driven development.
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="https://github.com/maulanashalihin/slug-post" target="_blank" rel="noopener noreferrer" class="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-all inline-flex items-center space-x-2">
+                    <div class="flex flex-wrap gap-2 sm:gap-4">
+                        <a href="https://github.com/maulanashalihin/slug-post" target="_blank" rel="noopener noreferrer" class="bg-white text-primary-600 px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-primary-50 transition-all inline-flex items-center space-x-2 text-sm sm:text-base">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                             </svg>
                             <span>View on GitHub</span>
                         </a>
-                        <a href="https://github.com/maulanashalihin/slug-post/issues" target="_blank" rel="noopener noreferrer" class="bg-primary-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-400 transition-all inline-flex items-center space-x-2">
+                        <a href="https://github.com/maulanashalihin/slug-post/issues" target="_blank" rel="noopener noreferrer" class="bg-primary-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-primary-400 transition-all inline-flex items-center space-x-2 text-sm sm:text-base">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <path d="M12 16v-4"></path>
@@ -287,27 +346,49 @@
         </div>
 
         <!-- Author -->
-        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-8 md:p-12 text-center">
-            <h2 class="text-3xl font-bold text-slate-900 mb-4">Created By</h2>
-            <p class="text-2xl font-bold text-primary-600 mb-2">Maulana Shalihin</p>
-            <p class="text-slate-600 mb-6">
+        <div class="bg-white rounded-xl sm:rounded-2xl shadow-xl border border-slate-200 p-4 sm:p-8 md:p-12 text-center">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 sm:mb-4">Created By</h2>
+            <p class="text-xl sm:text-2xl font-bold text-primary-600 mb-2">Maulana Shalihin</p>
+            <p class="text-sm sm:text-base text-slate-600 mb-4 sm:mb-6">
                 Built with ❤️ for the markdown community
             </p>
-            <p class="text-slate-600 max-w-2xl mx-auto mb-4">
+            <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto mb-3 sm:mb-4 px-2">
                 SlugPost was created to solve a simple problem: making markdown sharing easy and beautiful. 
                 What started as a personal tool has grown into a platform used by developers, writers, and teams worldwide.
             </p>
-            <p class="text-slate-600 max-w-2xl mx-auto">
+            <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto mb-4 sm:mb-6 px-2">
                 Built using <a href="https://laju.dev" target="_blank" rel="noopener noreferrer" class="text-primary-600 font-semibold hover:text-primary-700 hover:underline">Laju.dev</a>, 
                 a modern full-stack TypeScript framework also created by Maulana Shalihin.
             </p>
+            <div class="bg-blue-50 border border-blue-200 rounded-lg sm:rounded-xl p-4 sm:p-6 max-w-2xl mx-auto">
+                <p class="text-sm sm:text-base text-slate-700 mb-3">
+                    <strong class="text-primary-600">I'm very open to feedback!</strong> If you have suggestions, bug reports, or feature requests:
+                </p>
+                <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3">
+                    <a href="https://github.com/maulanashalihin/slug-post/issues" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-all text-sm font-medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16v-4"></path>
+                            <path d="M12 8h.01"></path>
+                        </svg>
+                        <span>Open an Issue</span>
+                    </a>
+                    <a href="https://github.com/maulanashalihin/slug-post" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-slate-600 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition-all text-sm font-medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                            <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                        </svg>
+                        <span>Contribute on GitHub</span>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <!-- CTA -->
-        <div class="text-center mt-12">
-            <a href="/" class="inline-flex items-center space-x-2 bg-primary-600 text-white px-8 py-4 rounded-lg hover:bg-primary-700 transition-all font-semibold text-lg shadow-xl shadow-primary-600/30">
+        <div class="text-center mt-8 sm:mt-12">
+            <a href="/" class="inline-flex items-center space-x-2 bg-primary-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-primary-700 transition-all font-semibold text-base sm:text-lg shadow-xl shadow-primary-600/30">
                 <span>Start Publishing Now</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:w-5 sm:h-5">
                     <path d="M5 12h14"></path>
                     <path d="m12 5 7 7-7 7"></path>
                 </svg>
@@ -317,10 +398,10 @@
     </main>
 
     <!-- Footer -->
-    <footer class="container mx-auto px-6 py-8 mt-16 border-t border-slate-200">
-        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-slate-600">
-            <p>© 2025 SlugPost. Built with ❤️ by Maulana Shalihin</p>
-            <div class="flex space-x-6 mt-4 md:mt-0">
+    <footer class="container mx-auto px-4 sm:px-6 py-6 sm:py-8 mt-8 sm:mt-16 border-t border-slate-200">
+        <div class="flex flex-col md:flex-row justify-between items-center text-xs sm:text-sm text-slate-600">
+            <p class="text-center md:text-left">© 2025 SlugPost. Built with ❤️ by Maulana Shalihin</p>
+            <div class="flex space-x-4 sm:space-x-6 mt-3 sm:mt-4 md:mt-0">
                 <a href="/about" class="hover:text-primary-600 transition-colors">About</a>
                 <a href="https://github.com/maulanashalihin/slug-post" target="_blank" rel="noopener noreferrer" class="hover:text-primary-600 transition-colors flex items-center space-x-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">

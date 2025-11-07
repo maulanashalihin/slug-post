@@ -6,14 +6,26 @@
 
 > Built with [Laju.dev](https://laju.dev) - A modern full-stack TypeScript framework
 
-## 🎯 Problem Statement
+## 💡 Why SlugPost?
 
-Sharing markdown files directly often results in poor readability. Recipients need to:
-- Download the file first
-- Use a markdown viewer or editor
-- Deal with formatting inconsistencies
+### The Story Behind It
 
-**SlugPost** solves this by instantly converting your markdown files into beautiful, shareable web pages with custom URLs.
+I built this because I honestly felt the need. You know how it is—after using AI tools (ChatGPT/Gemini/etc.), you get markdown text output, but then you're stuck when trying to share the results...
+
+**The Problems:**
+- 📄 Send a .md file → people are too lazy to download it
+- 📋 Copy-paste directly to chat/email → formatting gets destroyed 😭
+- 🔄 Manual conversion → tedious and time-consuming
+
+**The Solution: SlugPost**
+
+Just paste your markdown text here, click publish, and it instantly becomes a clean, beautiful, and responsive web page.
+
+✅ **No registration required** to publish  
+✅ **Instant & free** with no limits  
+✅ **Get a shareable link** that's easy to distribute  
+
+Perfect for sharing AI outputs, notes, or draft writings in a readable format.
 
 ## ✨ Features
 
@@ -378,6 +390,10 @@ This project is licensed under the ISC License.
 ## 👨‍💻 Author
 
 **Maulana Shalihin**
+
+I'm very open to feedback! If you have suggestions, bug reports, or feature requests, feel free to:
+- Open an issue on [GitHub](https://github.com/maulanashalihin/slug-post/issues)
+- Or contribute directly via Pull Request
 
 ## 🙏 Acknowledgments
 
