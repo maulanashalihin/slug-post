@@ -2,8 +2,7 @@
   import axios from "axios";
   import Header from "../Components/Header.svelte";
   import { Toast } from "../Components/helper";
-  export let user;
-
+  export let user; 
   let current_password;
   let new_password;
   let confirm_password;
@@ -85,13 +84,13 @@
 <div class="max-w-4xl mx-auto p-4">
   <div class="max-w-3xl mx-auto mb-8">
     <div
-      class="bg-white mt-24 dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden"
+      class="bg-white mt-24 rounded-lg shadow-sm border border-slate-200 overflow-hidden"
     >
       <div class="p-6">
         <div class="flex items-center space-x-4">
           <div class="relative group">
             <div
-              class="w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900 overflow-hidden"
+              class="w-20 h-20 rounded-full bg-primary-100 overflow-hidden"
             >
               {#if previewUrl}
                 <img
@@ -102,7 +101,7 @@
               {:else}
                 <div class="w-full h-full flex items-center justify-center">
                   <span
-                    class="text-2xl font-bold text-emerald-600 dark:text-emerald-400"
+                    class="text-2xl font-bold text-primary-700"
                   >
                     {user.name.charAt(0).toUpperCase()}
                   </span>
@@ -110,7 +109,7 @@
               {/if}
             </div>
             <label
-              class="absolute bottom-0 right-0 bg-emerald-500 text-white p-1.5 rounded-full cursor-pointer hover:bg-emerald-600 transition-colors"
+              class="absolute bottom-0 right-0 bg-primary-600 text-white p-1.5 rounded-full cursor-pointer hover:bg-primary-700 transition-colors"
             >
               <svg
                 class="w-4 h-4"
@@ -140,10 +139,10 @@
             </label>
           </div>
           <div>
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            <h1 class="text-2xl font-bold text-slate-900">
               {user.name}
             </h1>
-            <p class="text-gray-500 dark:text-gray-400">{user.email}</p>
+            <p class="text-slate-600">{user.email}</p>
           </div>
         </div>
       </div>
@@ -151,9 +150,9 @@
   </div>
 
   <div class="max-w-3xl mx-auto space-y-6">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+    <div class="bg-white rounded-lg shadow-sm border border-slate-200">
       <div class="p-6">
-        <h2 class="text-lg font-medium text-gray-900 dark:text-white mb-6">
+        <h2 class="text-lg font-semibold text-slate-900 mb-6">
           Personal Information
         </h2>
         <form on:submit|preventDefault={changeProfile} class="space-y-6">
@@ -161,14 +160,14 @@
             <div class="space-y-1">
               <label
                 for="name"
-                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                class="block text-sm font-medium text-slate-700"
                 >Name</label
               >
               <input
                 bind:value={user.name}
                 type="text"
                 id="name"
-                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-gray-600 focus:border-blue-500 dark:focus:outline-none dark:focus:border-gray-600 dark:text-white transition duration-200 ease-in-out"
+                class="w-full px-4 py-3 rounded-lg bg-white border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
                 placeholder="Your full name"
               />
             </div>
@@ -176,14 +175,14 @@
             <div class="space-y-1">
               <label
                 for="email"
-                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                class="block text-sm font-medium text-slate-700"
                 >Email</label
               >
               <input
                 bind:value={user.email}
                 type="email"
                 id="email"
-                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-gray-600 focus:border-blue-500 dark:focus:outline-none dark:focus:border-gray-600 dark:text-white transition duration-200 ease-in-out"
+                class="w-full px-4 py-3 rounded-lg bg-white border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
                 placeholder="you@example.com"
               />
             </div>
@@ -193,14 +192,14 @@
             <div class="space-y-1">
               <label
                 for="phone"
-                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                class="block text-sm font-medium text-slate-700"
                 >Phone</label
               >
               <input
                 bind:value={user.phone}
                 type="text"
                 id="phone"
-                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-gray-600 focus:border-blue-500 dark:focus:outline-none dark:focus:border-gray-600 dark:text-white transition duration-200 ease-in-out"
+                class="w-full px-4 py-3 rounded-lg bg-white border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
                 placeholder="Your phone number"
               />
             </div>
@@ -210,7 +209,7 @@
             <button
               type="submit"
               disabled={isLoading}
-              class="inline-flex items-center px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium shadow-sm hover:shadow-md transition duration-200 ease-in-out dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              class="inline-flex items-center px-4 py-2 rounded-lg bg-primary-600 hover:bg-primary-700 text-white font-medium shadow-lg shadow-primary-600/30 hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {#if isLoading}
                 <svg
@@ -242,9 +241,9 @@
       </div>
     </div>
 
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+    <div class="bg-white rounded-lg shadow-sm border border-slate-200">
       <div class="p-6">
-        <h2 class="text-lg font-medium text-gray-900 dark:text-white mb-6">
+        <h2 class="text-lg font-semibold text-slate-900 mb-6">
           Change Password
         </h2>
         <form on:submit|preventDefault={changePassword} class="space-y-6">
@@ -252,42 +251,42 @@
             <div>
               <label
                 for="current_password"
-                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                class="block text-sm font-medium text-slate-700"
                 >Current Password</label
               >
               <input
                 bind:value={current_password}
                 type="password"
                 id="current_password"
-                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-gray-600 focus:border-blue-500 dark:focus:outline-none dark:focus:border-gray-600 dark:text-white transition duration-200 ease-in-out"
+                class="w-full px-4 py-3 rounded-lg bg-white border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
               />
             </div>
 
             <div>
               <label
                 for="new_password"
-                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                class="block text-sm font-medium text-slate-700"
                 >New Password</label
               >
               <input
                 bind:value={new_password}
                 type="password"
                 id="new_password"
-                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-gray-600 focus:border-blue-500 dark:focus:outline-none dark:focus:border-gray-600 dark:text-white transition duration-200 ease-in-out"
+                class="w-full px-4 py-3 rounded-lg bg-white border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
               />
             </div>
 
             <div>
               <label
                 for="confirm_password"
-                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                class="block text-sm font-medium text-slate-700"
                 >Confirm New Password</label
               >
               <input
                 bind:value={confirm_password}
                 type="password"
                 id="confirm_password"
-                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-gray-600 focus:border-blue-500 dark:focus:outline-none dark:focus:border-gray-600 dark:text-white transition duration-200 ease-in-out"
+                class="w-full px-4 py-3 rounded-lg bg-white border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
               />
             </div>
           </div>
@@ -296,7 +295,7 @@
             <button
               type="submit"
               disabled={isLoading}
-              class="inline-flex items-center px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium shadow-sm hover:shadow-md transition duration-200 ease-in-out dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              class="inline-flex items-center px-4 py-2 rounded-lg bg-primary-600 hover:bg-primary-700 text-white font-medium shadow-lg shadow-primary-600/30 hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {#if isLoading}
                 <svg

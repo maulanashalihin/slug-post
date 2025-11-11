@@ -1,0 +1,54 @@
+# Nama workflow Anda
+name: Deploy to Production
+
+# Pemicu: Jalankan workflow ini setiap kali ada push ke branch 'main'
+on:
+  push:
+    branches:
+      - main  # Ganti 'main' jika Anda menggunakan branch lain (misal: 'production')
+
+# Pekerjaan yang harus dilakukan
+jobs:
+  deploy:
+    # Menggunakan OS runner terbaru dari GitHub
+    runs-on: ubuntu-latest
+
+    steps:
+    # Langkah 1: Checkout kode (tidak wajib jika Anda hanya ssh)
+    # - name: Checkout code
+    #   uses: actions/checkout@v3
+
+    # Langkah 2: SSH ke server dan jalankan perintah deploy
+    - name: SSH and run deploy commands
+      uses: appleboy/ssh-action@master # Menggunakan Action populer untuk SSH
+      with:
+        host: ${{ secrets.SSH_HOST }}         # Ambil IP/host dari GitHub Secrets
+        username: ${{ secrets.SSH_USER }}     # Ambil username dari GitHub Secrets
+        key: ${{ secrets.SSH_PRIVATE_KEY }}   # Ambil kunci privat SSH dari GitHub Secrets
+        script: |
+          # Perintah-perintah ini akan dijalankan di server produksi Anda
+          echo "🚀 Starting deployment..."
+          cd /root/slug-post/build # Ganti dengan path ke direktori proyek Anda
+          
+          echo " pulling code from GitHub..."
+          git pull origin main
+
+          # --- TAMBAHKAN BAGIAN INI ---
+          echo " loading NVM..."
+          # Mengasumsikan NVM diinstal di lokasi default (~/.nvm)
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+          
+          # (Opsional) Jika Anda ingin menggunakan versi Node tertentu
+          # nvm use default
+          # --- BATAS PENAMBAHAN ---
+
+          echo " installing dependencies..."
+          # Contoh untuk Node.js (sesuaikan dengan teknologi Anda)
+          npm install 
+  
+          pm2 reload klikaja
+           
+          
+          echo "✅ Deployment finished!"

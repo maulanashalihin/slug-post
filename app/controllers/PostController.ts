@@ -155,7 +155,26 @@ class PostController {
      * GET /success
      */
     public async success(request: Request, response: Response) {
-        return response.type("html").send(view("success.html"));
+        const { slug, token } = request.query;
+
+        if (!slug || !token) {
+            return response.redirect("/");
+        }
+
+        // Check if post is already claimed
+        const post = await DB.from("posts")
+            .where("slug", slug)
+            .where("edit_token", token)
+            .first();
+
+        const isClaimed = post?.author_id ? true : false;
+
+        return response.inertia("Success", {
+            slug,
+            edit_token: token,
+            user: request?.user || null,
+            is_claimed: isClaimed
+        });
     }
 
     /**
@@ -423,20 +442,21 @@ class PostController {
 
                     return response.redirect(`/${slug}/edit/${token}`);
 
-                } else {
+                }  
 
-                    const returnUrl = `/claim/${slug}?token=${token}`;
+            }
+
+            console.log("masuk sini")
+
+               const returnUrl = `/claim/${slug}?token=${token}`;
 
                     return response
                         .cookie("redirect_after_auth", returnUrl, 1000 * 60 * 15) // 15 minutes
                         .redirect("/register");
-                }
-
-            }
-
 
 
             // User not logged in, save redirect URL in cookie and redirect to register
+            
 
 
 

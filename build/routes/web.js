@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const AuthController_1 = __importDefault(require("../app/controllers/AuthController"));
 const auth_1 = __importDefault(require("../app/middlewares/auth"));
+const optionalAuth_1 = __importDefault(require("../app/middlewares/optionalAuth"));
 const HomeController_1 = __importDefault(require("../app/controllers/HomeController"));
 const PostController_1 = __importDefault(require("../app/controllers/PostController"));
 const AssetController_1 = __importDefault(require("../app/controllers/AssetController"));
@@ -21,8 +22,8 @@ Route.get("/tos", HomeController_1.default.tos);
 Route.get("/privacy", HomeController_1.default.privacy);
 Route.get("/api/check-slug/:slug", PostController_1.default.checkSlug);
 Route.post("/api/preview", PostController_1.default.preview);
-Route.post("/publish", PostController_1.default.store);
-Route.get("/success", PostController_1.default.success);
+Route.post("/publish", [optionalAuth_1.default], PostController_1.default.store);
+Route.get("/success", [optionalAuth_1.default], PostController_1.default.success);
 Route.post("/api/s3/signed-url", [auth_1.default], S3Controller_1.default.getSignedUrl);
 Route.get("/api/s3/public-url/:fileKey", S3Controller_1.default.getPublicUrl);
 Route.get("/api/s3/health", S3Controller_1.default.health);

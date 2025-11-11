@@ -1,5 +1,6 @@
 import AuthController from "../app/controllers/AuthController"; 
 import Auth from "../app/middlewares/auth"
+import OptionalAuth from "../app/middlewares/optionalAuth"
 import HomeController from "../app/controllers/HomeController";
 import PostController from "../app/controllers/PostController";
 import AssetController from "../app/controllers/AssetController";
@@ -49,8 +50,8 @@ Route.get("/privacy", HomeController.privacy);
  */
 Route.get("/api/check-slug/:slug", PostController.checkSlug);
 Route.post("/api/preview", PostController.preview);
-Route.post("/publish", PostController.store);
-Route.get("/success", PostController.success);
+Route.post("/publish", [OptionalAuth], PostController.store);
+Route.get("/success", [OptionalAuth], PostController.success);
 
 /**
  * S3 Routes

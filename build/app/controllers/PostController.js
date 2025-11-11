@@ -117,7 +117,21 @@ class PostController {
         }
     }
     async success(request, response) {
-        return response.type("html").send((0, View_1.view)("success.html"));
+        const { slug, token } = request.query;
+        if (!slug || !token) {
+            return response.redirect("/");
+        }
+        const post = await DB_1.default.from("posts")
+            .where("slug", slug)
+            .where("edit_token", token)
+            .first();
+        const isClaimed = post?.author_id ? true : false;
+        return response.inertia("Success", {
+            slug,
+            edit_token: token,
+            user: request?.user || null,
+            is_claimed: isClaimed
+        });
     }
     async show(request, response) {
         try {
@@ -304,13 +318,12 @@ class PostController {
                     response.clearCookie("redirect_after_auth");
                     return response.redirect(`/${slug}/edit/${token}`);
                 }
-                else {
-                    const returnUrl = `/claim/${slug}?token=${token}`;
-                    return response
-                        .cookie("redirect_after_auth", returnUrl, 1000 * 60 * 15)
-                        .redirect("/register");
-                }
             }
+            console.log("masuk sini");
+            const returnUrl = `/claim/${slug}?token=${token}`;
+            return response
+                .cookie("redirect_after_auth", returnUrl, 1000 * 60 * 15)
+                .redirect("/register");
         }
         catch (error) {
             console.error("Error claiming post:", error);
