@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="/js/index.css">
  <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 min-h-screen">
     
@@ -72,23 +75,63 @@
 
                 <!-- Content -->
                 <div>
-                    <label for="content" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-2">
-                        Content *
-                    </label>
-                    <textarea 
-                        id="content" 
-                        name="content" 
-                        rows="10" 
-                        required
-                        placeholder="# My Awesome Post
+                    <div class="flex items-center justify-between mb-2">
+                        <label for="content" class="block text-xs sm:text-sm font-semibold text-slate-700">
+                            Content *
+                        </label>
+                        <!-- Write/Preview Tabs -->
+                        <div class="flex bg-slate-100 rounded-lg p-0.5">
+                            <button type="button" id="write-tab" onclick="switchTab('write')" class="px-3 py-1 text-xs sm:text-sm font-medium rounded-md transition-all bg-white text-slate-900 shadow-sm">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                    </svg>
+                                    <span>Write</span>
+                                </span>
+                            </button>
+                            <button type="button" id="preview-tab" onclick="switchTab('preview')" class="px-3 py-1 text-xs sm:text-sm font-medium rounded-md transition-all text-slate-600 hover:text-slate-900">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                    <span>Preview</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Write Mode -->
+                    <div id="write-mode">
+                        <textarea 
+                            id="content" 
+                            name="content" 
+                            rows="10" 
+                            required
+                            placeholder="# My Awesome Post
 
 Write your markdown content here...
 
 - Support for **bold** and *italic*
 - Code blocks with syntax highlighting
 - Tables, lists, and more!"
-                        class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-primary-500 font-mono text-xs sm:text-sm resize-y"
-                    ></textarea>
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-primary-500 font-mono text-xs sm:text-sm resize-y"
+                        ></textarea>
+                    </div>
+                    
+                    <!-- Preview Mode -->
+                    <div id="preview-mode" class="hidden">
+                        <div id="preview-content" class="w-full min-h-[280px] px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-lg bg-white overflow-auto prose prose-slate prose-sm sm:prose max-w-none
+                            prose-headings:text-slate-900 prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg
+                            prose-p:text-slate-700 prose-a:text-primary-600 prose-strong:text-slate-900
+                            prose-code:bg-slate-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-slate-800 prose-code:before:content-none prose-code:after:content-none
+                            prose-pre:bg-slate-900 prose-pre:text-slate-100
+                            prose-blockquote:border-l-primary-500 prose-blockquote:bg-slate-50 prose-blockquote:py-1
+                            prose-img:rounded-lg prose-img:shadow-md">
+                            <p class="text-slate-400 italic">Nothing to preview yet. Start writing!</p>
+                        </div>
+                    </div>
+                    
                     <p id="content-help" class="text-xs text-slate-500 mt-1.5 sm:mt-2">Supports full markdown syntax including code blocks, tables, and images</p>
                 </div>
 
@@ -247,6 +290,67 @@ Write your markdown content here...
         const fileInput = document.getElementById('file');
         const contentTextarea = document.getElementById('content');
         const slugInput = document.getElementById('slug');
+
+        // Configure marked for syntax highlighting
+        marked.setOptions({
+            highlight: function(code, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    return hljs.highlight(code, { language: lang }).value;
+                }
+                return hljs.highlightAuto(code).value;
+            },
+            breaks: true,
+            gfm: true
+        });
+
+        // Switch between Write and Preview tabs
+        function switchTab(tab) {
+            const writeTab = document.getElementById('write-tab');
+            const previewTab = document.getElementById('preview-tab');
+            const writeMode = document.getElementById('write-mode');
+            const previewMode = document.getElementById('preview-mode');
+            const previewContent = document.getElementById('preview-content');
+            
+            if (tab === 'write') {
+                // Show write mode
+                writeMode.classList.remove('hidden');
+                previewMode.classList.add('hidden');
+                
+                // Update tab styles
+                writeTab.classList.add('bg-white', 'text-slate-900', 'shadow-sm');
+                writeTab.classList.remove('text-slate-600', 'hover:text-slate-900');
+                previewTab.classList.remove('bg-white', 'text-slate-900', 'shadow-sm');
+                previewTab.classList.add('text-slate-600', 'hover:text-slate-900');
+            } else {
+                // Show preview mode
+                writeMode.classList.add('hidden');
+                previewMode.classList.remove('hidden');
+                
+                // Update tab styles
+                previewTab.classList.add('bg-white', 'text-slate-900', 'shadow-sm');
+                previewTab.classList.remove('text-slate-600', 'hover:text-slate-900');
+                writeTab.classList.remove('bg-white', 'text-slate-900', 'shadow-sm');
+                writeTab.classList.add('text-slate-600', 'hover:text-slate-900');
+                
+                // Render preview
+                const content = contentTextarea.value.trim();
+                const format = document.querySelector('input[name="format"]:checked').value;
+                
+                if (!content) {
+                    previewContent.innerHTML = '<p class="text-slate-400 italic">Nothing to preview yet. Start writing!</p>';
+                } else if (format === 'markdown') {
+                    // Render markdown
+                    previewContent.innerHTML = marked.parse(content);
+                    // Apply syntax highlighting to code blocks
+                    previewContent.querySelectorAll('pre code').forEach((block) => {
+                        hljs.highlightElement(block);
+                    });
+                } else {
+                    // Render HTML directly
+                    previewContent.innerHTML = content;
+                }
+            }
+        }
 
         function toggleFormat(format) {
             const helpText = document.getElementById('content-help');
