@@ -118,6 +118,68 @@ class Controller {
         }
         return response.download(path);
     }
+    async uploadThumbnail(request, response) {
+        try {
+            let result = null;
+            let isValidFile = true;
+            await request.multipart(async (field) => {
+                if (field.file) {
+                    if (!field.mime_type.includes("image")) {
+                        isValidFile = false;
+                        return;
+                    }
+                    const id = (0, uuidv7_1.uuidv7)();
+                    const fileName = `thumbnail-${id}.webp`;
+                    const chunks = [];
+                    const readable = field.file.stream;
+                    readable.on('data', (chunk) => {
+                        chunks.push(chunk);
+                    });
+                    readable.on('end', async () => {
+                        const buffer = Buffer.concat(chunks);
+                        try {
+                            const processedBuffer = await (0, sharp_1.default)(buffer)
+                                .webp({ quality: 85 })
+                                .resize(1200, 630, {
+                                fit: 'cover',
+                                position: 'center'
+                            })
+                                .toBuffer();
+                            const s3Key = `/thumbnails/${fileName}`;
+                            await (0, S3_1.uploadBuffer)(s3Key, processedBuffer, 'image/webp', 'public, max-age=31536000');
+                            const publicUrl = (0, S3_1.getPublicUrl)(s3Key);
+                            result = { url: publicUrl };
+                            response.json(result);
+                        }
+                        catch (err) {
+                            console.error('Error processing thumbnail:', err);
+                            response.status(500).json({ error: "Error processing thumbnail" });
+                        }
+                    });
+                }
+            });
+            if (!isValidFile) {
+                return response.status(400).json({ error: "Invalid file type. Only images are allowed." });
+            }
+        }
+        catch (error) {
+            console.error("Error uploading thumbnail:", error);
+            return response.status(500).json({ error: "Internal server error" });
+        }
+    }
+    async listAssets(request, response) {
+        try {
+            const assets = await DB_1.default.from("assets")
+                .where("user_id", request.user.id)
+                .orderBy("created_at", "desc")
+                .limit(50);
+            return response.json({ assets });
+        }
+        catch (error) {
+            console.error("Error listing assets:", error);
+            return response.status(500).json({ error: "Failed to load assets" });
+        }
+    }
 }
 exports.default = new Controller();
 //# sourceMappingURL=AssetController.js.map

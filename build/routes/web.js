@@ -27,6 +27,9 @@ Route.get("/success", [optionalAuth_1.default], PostController_1.default.success
 Route.post("/api/s3/signed-url", [auth_1.default], S3Controller_1.default.getSignedUrl);
 Route.get("/api/s3/public-url/:fileKey", S3Controller_1.default.getPublicUrl);
 Route.get("/api/s3/health", S3Controller_1.default.health);
+Route.post("/api/upload-thumbnail", AssetController_1.default.uploadThumbnail);
+Route.get("/api/assets", [auth_1.default], AssetController_1.default.listAssets);
+Route.post("/api/assets/upload", [auth_1.default], AssetController_1.default.uploadAsset);
 Route.get("/login", AuthController_1.default.loginPage);
 Route.post("/login", AuthController_1.default.processLogin);
 Route.get("/register", AuthController_1.default.registerPage);
@@ -45,6 +48,9 @@ Route.post("/change-password", [auth_1.default], AuthController_1.default.change
 Route.delete("/users", [auth_1.default], AuthController_1.default.deleteUsers);
 Route.get("/assets/:file", AssetController_1.default.distFolder);
 Route.get("/claim/:slug", PostController_1.default.claim);
+Route.get("/:slug/settings/:token", PostController_1.default.settings);
+Route.post("/:slug/settings/:token", PostController_1.default.updateSettings);
+Route.get("/:slug/visual/:token", PostController_1.default.visualBuilder);
 Route.get("/:slug/edit/:token", PostController_1.default.edit);
 Route.post("/:slug/edit/:token", PostController_1.default.update);
 Route.get("/:slug", PostController_1.default.show);

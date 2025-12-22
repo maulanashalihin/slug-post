@@ -315,8 +315,11 @@ class PostController {
 
             }
 
+            // Determine which editor to use based on format
+            const editorPage = post.format === 'html' ? 'HtmlEditor' : 'EditPost';
+
             // Return Inertia view
-            return response.inertia("EditPost", {
+            return response.inertia(editorPage, {
                 post: {
                     id: post.id,
                     slug: post.slug,
@@ -520,6 +523,183 @@ class PostController {
         } catch (error) {
             console.error("Error claiming post:", error);
             return response.status(500).type("html").send("<h1>Error claiming post</h1>");
+        }
+    }
+
+    /**
+     * Show settings page
+     * GET /:slug/settings/:token
+     */
+    public async settings(request: Request, response: Response) {
+        try {
+            const { slug, token } = request.params;
+
+            const post = await DB.from("posts")
+                .where("slug", slug)
+                .where("edit_token", token)
+                .first();
+
+            if (!post) {
+                return response.status(404).type("html").send("<h1>Invalid settings link</h1>");
+            }
+
+            let author = null;
+            if (post.author_id) {
+                author = await DB.from("users")
+                    .where("id", post.author_id)
+                    .select("name", "email")
+                    .first();
+            }
+
+            let user = null;
+            if (request.cookies.auth_id) {
+                const session = await DB.from("sessions").where("id", request.cookies.auth_id).first();
+                if (session) {
+                    user = await DB.from("users").where("id", session.user_id).select(["id", "name", "email"]).first();
+                }
+            }
+
+            return response.inertia("PostSettings", {
+                post: {
+                    id: post.id,
+                    slug: post.slug,
+                    title: post.title,
+                    description: post.description || '',
+                    thumbnail: post.thumbnail || '',
+                    format: post.format || 'markdown',
+                    view_count: post.view_count,
+                    created_at: post.created_at,
+                    updated_at: post.updated_at
+                },
+                user,
+                author: author ? { name: author.name, email: author.email } : null,
+                edit_token: token
+            });
+
+        } catch (error) {
+            console.error("Error loading settings page:", error);
+            return response.status(500).type("html").send("<h1>Error loading settings page</h1>");
+        }
+    }
+
+    /**
+     * Update post settings
+     * POST /:slug/settings/:token
+     */
+    public async updateSettings(request: Request, response: Response) {
+        try {
+            const { slug, token } = request.params;
+            const body = await request.json();
+            const { slug: newSlug, title, description, thumbnail } = body;
+
+            const post = await DB.from("posts")
+                .where("slug", slug)
+                .where("edit_token", token)
+                .first();
+
+            if (!post) {
+                return response.status(404).json({ error: "Invalid settings link" });
+            }
+
+            // If slug is changing, check availability
+            if (newSlug && newSlug !== slug) {
+                const slugRegex = /^[a-z0-9-]+$/;
+                if (!slugRegex.test(newSlug)) {
+                    return response.status(400).json({ error: "Invalid slug format" });
+                }
+
+                const existingPost = await DB.from("posts").where("slug", newSlug).first();
+                if (existingPost) {
+                    return response.status(409).json({ error: "Slug already taken" });
+                }
+            }
+
+            await DB.table("posts")
+                .where("id", post.id)
+                .update({
+                    slug: newSlug || slug,
+                    title: title || post.title,
+                    description: description || null,
+                    thumbnail: thumbnail || null,
+                    updated_at: DB.fn.now()
+                });
+
+            return response.json({
+                success: true,
+                message: "Settings updated successfully",
+                newSlug: newSlug || slug
+            });
+
+        } catch (error) {
+            console.error("Error updating settings:", error);
+            return response.status(500).json({ error: "Failed to update settings" });
+        }
+    }
+
+    /**
+     * Show visual builder page for HTML posts
+     * GET /:slug/visual/:token
+     */
+    public async visualBuilder(request: Request, response: Response) {
+        try {
+            const { slug, token } = request.params;
+
+            const post = await DB.from("posts")
+                .where("slug", slug)
+                .where("edit_token", token)
+                .first();
+
+            if (!post) {
+                return response.status(404).type("html").send("<h1>Invalid edit link</h1>");
+            }
+
+            // Only allow visual builder for HTML posts
+            if (post.format !== 'html') {
+                return response.redirect(`/${slug}/edit/${token}`);
+            }
+
+            let author = null;
+            if (post.author_id) {
+                author = await DB.from("users")
+                    .where("id", post.author_id)
+                    .select("name", "email")
+                    .first();
+            }
+
+            let user = null;
+            let assets: any[] = [];
+            if (request.cookies.auth_id) {
+                const session = await DB.from("sessions").where("id", request.cookies.auth_id).first();
+                if (session) {
+                    user = await DB.from("users").where("id", session.user_id).select(["id", "name", "email"]).first();
+                    // Load user's assets for image picker
+                    assets = await DB.from("assets")
+                        .where("user_id", session.user_id)
+                        .orderBy("created_at", "desc")
+                        .limit(50);
+                }
+            }
+
+            return response.inertia("VisualBuilder", {
+                post: {
+                    id: post.id,
+                    slug: post.slug,
+                    title: post.title,
+                    content: post.content,
+                    format: post.format,
+                    view_count: post.view_count,
+                    created_at: post.created_at,
+                    updated_at: post.updated_at
+                },
+                user,
+                author: author ? { name: author.name, email: author.email } : null,
+                edit_token: token,
+                assets
+            });
+
+        } catch (error) {
+            console.error("Error loading visual builder:", error);
+            return response.status(500).type("html").send("<h1>Error loading visual builder</h1>");
         }
     }
 }

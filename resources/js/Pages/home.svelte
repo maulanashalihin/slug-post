@@ -100,11 +100,30 @@
         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
             <div class="flex items-start justify-between">
                 <div class="flex-1">
-                    <a href="/{post.slug}" class="group">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary-600 transition-colors">
-                            {post.title}
-                        </h3>
-                    </a>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <a href="/{post.slug}" class="group">
+                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors">
+                                {post.title}
+                            </h3>
+                        </a>
+                        {#if post.format === 'html'}
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                                HTML
+                            </span>
+                        {:else}
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                </svg>
+                                MD
+                            </span>
+                        {/if}
+                    </div>
                     <div class="flex items-center space-x-4 text-sm text-slate-600 mb-4">
                         <span class="flex items-center space-x-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -148,6 +167,19 @@
                             </svg>
                             <span>Edit</span>
                         </a>
+                        {#if post.format === 'html'}
+                            <span class="text-slate-300">|</span>
+                            <a 
+                                href="/{post.slug}/visual/{post.edit_token}" 
+                                class="inline-flex items-center space-x-1 text-sm text-purple-600 hover:text-purple-700 font-medium"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                <span>Visual</span>
+                            </a>
+                        {/if}
                     </div>
                 </div>
             </div>

@@ -61,10 +61,14 @@ Route.get("/success", [OptionalAuth], PostController.success);
  * POST /api/s3/product-image-url - Generate signed URL for product images
  * GET  /api/s3/public-url/:fileKey - Get public URL for existing file
  * GET  /api/s3/health - S3 service health check
+ * POST /api/upload-thumbnail - Upload post thumbnail
  */
 Route.post("/api/s3/signed-url", [Auth], S3Controller.getSignedUrl); 
 Route.get("/api/s3/public-url/:fileKey", S3Controller.getPublicUrl);
 Route.get("/api/s3/health", S3Controller.health);
+Route.post("/api/upload-thumbnail", AssetController.uploadThumbnail);
+Route.get("/api/assets", [Auth], AssetController.listAssets);
+Route.post("/api/assets/upload", [Auth], AssetController.uploadAsset);
 /**
  * Authentication Routes
  * Routes for handling user authentication
@@ -138,8 +142,13 @@ Route.get("/assets/:file", AssetController.distFolder);
  * GET  /:slug - View post (Renders Markdown or HTML based on post format)
  * GET  /:slug/edit/:token - Edit post form
  * POST /:slug/edit/:token - Update post
+ * GET  /:slug/settings/:token - Post settings page
+ * POST /:slug/settings/:token - Update post settings
  */
 Route.get("/claim/:slug", PostController.claim);
+Route.get("/:slug/settings/:token", PostController.settings);
+Route.post("/:slug/settings/:token", PostController.updateSettings);
+Route.get("/:slug/visual/:token", PostController.visualBuilder);
 Route.get("/:slug/edit/:token", PostController.edit);
 Route.post("/:slug/edit/:token", PostController.update);
 Route.get("/:slug", PostController.show);

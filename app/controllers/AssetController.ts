@@ -175,6 +175,90 @@ class Controller {
         // Serve the file
         return response.download(path);
     }
+
+    /**
+     * Upload thumbnail for post settings
+     * POST /api/upload-thumbnail
+     */
+    public async uploadThumbnail(request: Request, response: Response) {
+        try {
+            let result: any = null;
+            let isValidFile = true;
+
+            await request.multipart(async (field: any) => {
+                if (field.file) {
+                    if (!field.mime_type.includes("image")) {
+                        isValidFile = false;
+                        return;
+                    }
+
+                    const id = uuidv7();
+                    const fileName = `thumbnail-${id}.webp`;
+
+                    const chunks: Buffer[] = [];
+                    const readable = field.file.stream;
+
+                    readable.on('data', (chunk: Buffer) => {
+                        chunks.push(chunk);
+                    });
+
+                    readable.on('end', async () => {
+                        const buffer = Buffer.concat(chunks);
+
+                        try {
+                            // Process image with Sharp - optimize for OG image (1200x630)
+                            const processedBuffer = await sharp(buffer)
+                                .webp({ quality: 85 })
+                                .resize(1200, 630, {
+                                    fit: 'cover',
+                                    position: 'center'
+                                })
+                                .toBuffer();
+
+                            // Upload to S3/Wasabi
+                            const s3Key = `/thumbnails/${fileName}`;
+                            await uploadBuffer(s3Key, processedBuffer, 'image/webp', 'public, max-age=31536000');
+
+                            // Get public URL
+                            const publicUrl = getPublicUrl(s3Key);
+
+                            result = { url: publicUrl };
+                            response.json(result);
+                        } catch (err) {
+                            console.error('Error processing thumbnail:', err);
+                            response.status(500).json({ error: "Error processing thumbnail" });
+                        }
+                    });
+                }
+            });
+
+            if (!isValidFile) {
+                return response.status(400).json({ error: "Invalid file type. Only images are allowed." });
+            }
+
+        } catch (error) {
+            console.error("Error uploading thumbnail:", error);
+            return response.status(500).json({ error: "Internal server error" });
+        }
+    }
+
+    /**
+     * List user's assets
+     * GET /api/assets
+     */
+    public async listAssets(request: Request, response: Response) {
+        try {
+            const assets = await DB.from("assets")
+                .where("user_id", request.user.id)
+                .orderBy("created_at", "desc")
+                .limit(50);
+
+            return response.json({ assets });
+        } catch (error) {
+            console.error("Error listing assets:", error);
+            return response.status(500).json({ error: "Failed to load assets" });
+        }
+    }
 }
 
 export default new Controller();

@@ -20,7 +20,7 @@ class AuthController {
     async homePage(request, response) {
         const posts = await DB_1.default.from("posts")
             .where("author_id", request.user.id)
-            .select("id", "slug", "title", "view_count", "created_at", "updated_at", "edit_token")
+            .select("id", "slug", "title", "format", "view_count", "created_at", "updated_at", "edit_token")
             .orderBy("created_at", "desc");
         return response.inertia("home", { posts });
     }
