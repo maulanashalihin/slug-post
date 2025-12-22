@@ -69,6 +69,7 @@ Route.get("/api/s3/health", S3Controller.health);
 Route.post("/api/upload-thumbnail", AssetController.uploadThumbnail);
 Route.get("/api/assets", [Auth], AssetController.listAssets);
 Route.post("/api/assets/upload", [Auth], AssetController.uploadAsset);
+Route.delete("/api/assets/:id", [Auth], AssetController.deleteAsset);
 /**
  * Authentication Routes
  * Routes for handling user authentication
@@ -114,6 +115,7 @@ Route.post("/reset-password", AuthController.resetPassword);
  * DELETE /users - Delete users (admin only)
  */
 Route.get("/home", [Auth], AuthController.homePage);
+Route.get("/assets", [Auth], AssetController.assetsPage);
 Route.get("/profile", [Auth], AuthController.profilePage);
 Route.post("/change-profile", [Auth], AuthController.changeProfile);
 Route.post("/change-password", [Auth], AuthController.changePassword);

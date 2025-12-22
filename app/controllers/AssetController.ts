@@ -243,6 +243,24 @@ class Controller {
     }
 
     /**
+     * Assets page
+     * GET /assets
+     */
+    public async assetsPage(request: Request, response: Response) {
+        try {
+            const assets = await DB.from("assets")
+                .where("user_id", request.user.id)
+                .orderBy("created_at", "desc")
+                .limit(50);
+
+            return response.inertia("assets", { assets });
+        } catch (error) {
+            console.error("Error loading assets page:", error);
+            return response.inertia("assets", { assets: [] });
+        }
+    }
+
+    /**
      * List user's assets
      * GET /api/assets
      */
@@ -257,6 +275,43 @@ class Controller {
         } catch (error) {
             console.error("Error listing assets:", error);
             return response.status(500).json({ error: "Failed to load assets" });
+        }
+    }
+
+    /**
+     * Delete user's asset
+     * DELETE /api/assets/:id
+     */
+    public async deleteAsset(request: Request, response: Response) {
+        try {
+            const { id } = request.params;
+            
+            // Find asset and verify ownership
+            const asset = await DB.from("assets")
+                .where("id", id)
+                .where("user_id", request.user.id)
+                .first();
+
+            if (!asset) {
+                return response.status(404).json({ error: "Asset not found" });
+            }
+
+            // Delete from S3 if s3_key exists
+            if (asset.s3_key) {
+                const { deleteObject } = await import("app/services/S3");
+                await deleteObject(asset.s3_key);
+            }
+
+            // Delete from database
+            await DB.from("assets")
+                .where("id", id)
+                .where("user_id", request.user.id)
+                .delete();
+
+            return response.json({ success: true });
+        } catch (error) {
+            console.error("Error deleting asset:", error);
+            return response.status(500).json({ error: "Failed to delete asset" });
         }
     }
 }

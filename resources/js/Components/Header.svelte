@@ -81,6 +81,21 @@
                             <span>My Posts</span>
                         </span>
                     </a>
+                    <a 
+                        href="/assets" 
+                        use:inertia
+                        class="relative px-4 py-2 text-sm font-medium transition-all duration-200 rounded-full
+                            {isActive('/assets') ? 'text-primary-600 bg-primary-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}"
+                    >
+                        <span class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                                <circle cx="9" cy="9" r="2"></circle>
+                                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                            </svg>
+                            <span>Assets</span>
+                        </span>
+                    </a>
 
                     <!-- Divider -->
                     <div class="w-px h-6 bg-slate-200 mx-2"></div>
@@ -251,6 +266,23 @@
                     </svg>
                 </div>
                 <span class="font-medium">My Posts</span>
+            </a>
+
+            <a 
+                href="/assets" 
+                use:inertia
+                on:click={closeMobileMenu}
+                class="flex items-center space-x-3 px-4 py-3.5 rounded-xl transition-all duration-200
+                    {isActive('/assets') ? 'bg-primary-50 text-primary-600' : 'text-slate-700 hover:bg-slate-50'}"
+            >
+                <div class="w-9 h-9 rounded-lg flex items-center justify-center {isActive('/assets') ? 'bg-primary-100' : 'bg-slate-100'}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                        <circle cx="9" cy="9" r="2"></circle>
+                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                    </svg>
+                </div>
+                <span class="font-medium">Assets</span>
             </a>
 
             <a 
