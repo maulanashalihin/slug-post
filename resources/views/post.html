@@ -163,6 +163,18 @@
 
         // Smooth scroll for anchor links with offset
         document.addEventListener('DOMContentLoaded', () => {
+            // Wrap tables in scrollable container for mobile responsiveness
+            const tables = document.querySelectorAll('.prose table');
+            tables.forEach(table => {
+                // Check if already wrapped to avoid double wrapping
+                if (!table.parentElement.classList.contains('overflow-x-auto')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'overflow-x-auto my-6 border border-slate-200 rounded-lg shadow-sm';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
+
             // Add smooth scroll behavior
             document.documentElement.style.scrollBehavior = 'smooth';
             

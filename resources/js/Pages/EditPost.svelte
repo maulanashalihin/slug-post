@@ -141,7 +141,14 @@
                 <div class="flex-1 sm:flex-none">
                     <h1 class="text-lg sm:text-xl font-bold text-slate-900 truncate">{post.title}</h1>
                     <div class="flex items-center flex-wrap gap-x-3 gap-y-1 text-xs sm:text-sm text-slate-600 mt-1">
-                        <span class="truncate max-w-[120px] sm:max-w-none">/{post.slug}</span>
+                        <a href="/{post.slug}" target="_blank" class="max-w-[120px] sm:max-w-none text-blue-600 hover:text-blue-700 hover:underline decoration-blue-300 underline-offset-2 transition-colors duration-200 flex items-center gap-1 group">
+                            <span class="truncate">/{post.slug}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
                         <span class="hidden sm:inline">•</span>
                         <span>{post.view_count} views</span>
                         {#if hasUnsavedChanges}
@@ -253,20 +260,7 @@
                         </svg>
                         <span>Preview</span>
                     </span>
-                </button>
-                <button 
-                    on:click={() => activeTab = 'info'}
-                    class="px-4 py-2 rounded-lg text-sm font-medium transition-colors {activeTab === 'info' ? 'bg-primary-600 text-white' : 'text-slate-600 hover:bg-slate-100'}"
-                >
-                    <span class="flex items-center space-x-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:w-4 sm:h-4">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 16v-4"></path>
-                            <path d="M12 8h.01"></path>
-                        </svg>
-                        <span>Info</span>
-                    </span>
-                </button>
+                </button> 
             </div>
             
             <div class="hidden md:flex items-center space-x-2 text-xs text-slate-500">
@@ -285,16 +279,7 @@
         {#if activeTab === 'edit'}
         <!-- Editor Tab -->
         <div class="p-3 sm:p-6">
-            <div class="mb-4 flex space-x-4">
-                <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="radio" bind:group={form.format} value="markdown" class="text-primary-600 focus:ring-primary-500">
-                    <span class="text-sm text-slate-700">Markdown</span>
-                </label>
-                <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="radio" bind:group={form.format} value="html" class="text-primary-600 focus:ring-primary-500">
-                    <span class="text-sm text-slate-700">HTML</span>
-                </label>
-            </div>
+         
 
             <textarea 
                 bind:value={form.content}
