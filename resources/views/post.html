@@ -169,7 +169,7 @@
                 // Check if already wrapped to avoid double wrapping
                 if (!table.parentElement.classList.contains('overflow-x-auto')) {
                     const wrapper = document.createElement('div');
-                    wrapper.className = 'overflow-x-auto my-6 border border-slate-200 rounded-lg shadow-sm';
+                    wrapper.className = 'overflow-x-auto my-6'; // Removed border and shadow to avoid double border with CSS
                     table.parentNode.insertBefore(wrapper, table);
                     wrapper.appendChild(table);
                 }
