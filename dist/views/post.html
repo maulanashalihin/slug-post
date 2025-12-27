@@ -11,7 +11,7 @@
    <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-  <link rel="stylesheet" crossorigin href="/assets/index-ByVJfBJ3.css">
+  <link rel="stylesheet" crossorigin href="/assets/index-Cp4HnSwQ.css">
 </head>
 <body class="bg-slate-50 min-h-screen">
     
@@ -272,6 +272,67 @@
         
         .prose a[href^="#"]:hover {
             padding-left: 4px;
+        }
+
+        /* Modern Table Styling */
+        .prose table {
+            font-size: 0.875rem;
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .prose thead {
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .prose thead th {
+            color: #475569;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            white-space: nowrap;
+        }
+
+        .prose tbody tr {
+            background-color: white;
+            transition: background-color 0.15s ease;
+        }
+
+        .prose tbody tr:not(:last-child) {
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .prose tbody td {
+            padding: 0.75rem 1rem;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .prose tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .prose tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Remove default prose styles that might conflict */
+        .prose table thead th:first-child,
+        .prose table tbody td:first-child {
+            padding-left: 1rem;
+        }
+
+        .prose table thead th:last-child,
+        .prose table tbody td:last-child {
+            padding-right: 1rem;
         }
     </style>
 
