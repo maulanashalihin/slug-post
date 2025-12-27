@@ -283,6 +283,25 @@
             border-radius: 0.5rem;
             overflow: hidden;
             border: 1px solid #e2e8f0;
+            margin: 0; /* Fix scrollbar distance */
+        }
+
+        /* Custom Scrollbar for tables */
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 6px; /* Thinner scrollbar */
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+            background-color: #94a3b8;
         }
 
         .prose thead {
