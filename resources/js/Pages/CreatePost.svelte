@@ -173,10 +173,11 @@ Write your markdown content here...
             
             <!-- Format Selection -->
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-3">Format</label>
+                <label for="format-markdown" class="block text-sm font-semibold text-slate-700 mb-3">Format</label>
                 <div class="flex space-x-4">
                     <label class="flex items-center space-x-3 cursor-pointer group">
                         <input 
+                            id="format-markdown"
                             type="radio" 
                             bind:group={form.format} 
                             value="markdown" 
@@ -286,10 +287,10 @@ Write your markdown content here...
 
             <!-- File Upload -->
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                <label for="file-upload" class="block text-sm font-semibold text-slate-700 mb-2">
                     Or Upload File
                 </label>
-                <label class="relative cursor-pointer">
+                <label for="file-upload" class="relative cursor-pointer">
                     <div class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:border-primary-400 hover:bg-primary-50/50 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-slate-400 mb-2">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -301,6 +302,7 @@ Write your markdown content here...
                         <p class="text-xs text-slate-500 mt-1">MD, HTML, or TXT files</p>
                     </div>
                     <input
+                        id="file-upload"
                         type="file"
                         accept=".md,.markdown,.txt,.html"
                         on:change={handleFileUpload}

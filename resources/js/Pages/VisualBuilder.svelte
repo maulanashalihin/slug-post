@@ -4,9 +4,7 @@
     import { Toast } from '../Components/helper.js';
 
     export let post;
-    export let author;
     export let edit_token;
-    export let user;
     export let assets = [];
 
     let form = {
@@ -546,6 +544,7 @@
                 <button 
                     on:click={() => { showImagePicker = false; currentImageElement = null; }}
                     class="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                    aria-label="Close"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 6 6 18"/>

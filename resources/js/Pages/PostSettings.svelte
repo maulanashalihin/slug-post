@@ -6,7 +6,6 @@
     export let post;
     export let author;
     export let edit_token;
-    export let user;
 
     let form = {
         slug: post.slug,
@@ -210,13 +209,14 @@
         <div class="space-y-6">
             <!-- Slug -->
             <div class="bg-white rounded-xl border border-slate-200 p-6">
-                <label class="block text-sm font-semibold text-slate-900 mb-2">
+                <label for="slug-input" class="block text-sm font-semibold text-slate-900 mb-2">
                     URL Slug
                 </label>
                 <div class="flex items-center">
                     <span class="text-slate-500 text-sm mr-1">slugpost.com/</span>
                     <div class="flex-1 relative">
                         <input
+                            id="slug-input"
                             type="text"
                             bind:value={form.slug}
                             on:input={handleSlugInput}
@@ -261,11 +261,11 @@
 
             <!-- Title -->
             <div class="bg-white rounded-xl border border-slate-200 p-6">
-                <label class="block text-sm font-semibold text-slate-900 mb-2">
+                <label for="title-input" class="block text-sm font-semibold text-slate-900 mb-2">
                     Title
                 </label>
                 <input
-                    type="text"
+                    id="title-input"
                     bind:value={form.title}
                     class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                     placeholder="Enter post title"
@@ -277,10 +277,11 @@
 
             <!-- Description -->
             <div class="bg-white rounded-xl border border-slate-200 p-6">
-                <label class="block text-sm font-semibold text-slate-900 mb-2">
+                <label for="description-input" class="block text-sm font-semibold text-slate-900 mb-2">
                     Description
                 </label>
                 <textarea
+                    id="description-input"
                     bind:value={form.description}
                     rows="3"
                     class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none"
@@ -298,7 +299,7 @@
 
             <!-- Thumbnail -->
             <div class="bg-white rounded-xl border border-slate-200 p-6">
-                <label class="block text-sm font-semibold text-slate-900 mb-2">
+                <label for="thumbnail-upload" class="block text-sm font-semibold text-slate-900 mb-2">
                     Thumbnail Image
                 </label>
                 <p class="text-xs text-slate-500 mb-4">
@@ -325,7 +326,7 @@
                     </div>
                 {/if}
 
-                <label class="relative cursor-pointer">
+                <label for="thumbnail-upload" class="relative cursor-pointer">
                     <div class="flex items-center justify-center w-full max-w-md h-32 border-2 border-dashed border-slate-300 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors {isUploadingThumbnail ? 'opacity-50 pointer-events-none' : ''}">
                         {#if isUploadingThumbnail}
                             <div class="flex flex-col items-center">
@@ -348,6 +349,7 @@
                         {/if}
                     </div>
                     <input
+                        id="thumbnail-upload"
                         type="file"
                         accept="image/*"
                         on:change={uploadThumbnail}
