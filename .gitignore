@@ -5,3 +5,4 @@ production.sqlite3
 dev.sqlite3
 data
 build
+dist
