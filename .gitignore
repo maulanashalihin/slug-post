@@ -4,3 +4,4 @@ node_modules
 production.sqlite3
 dev.sqlite3
 data
+build
