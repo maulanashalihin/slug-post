@@ -4,6 +4,15 @@
     export let user;
     export let posts = [];
 
+    let selectedFormat = 'all';
+    let searchQuery = '';
+
+    $: filteredPosts = posts.filter(post => {
+        const formatMatch = selectedFormat === 'all' || post.format === selectedFormat;
+        const searchMatch = post.title.toLowerCase().includes(searchQuery.toLowerCase());
+        return formatMatch && searchMatch;
+    });
+
     // Format date
     function formatDate(timestamp) {
         return new Date(timestamp).toLocaleDateString('en-US', {
@@ -27,6 +36,41 @@
     <div class="mb-8">
         <h1 class="text-4xl font-bold text-slate-900 mb-2">My Posts</h1>
         <p class="text-slate-600">Manage all your published markdown posts</p>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="mb-6 space-y-4">
+        <!-- Format Tabs -->
+        <div class="flex space-x-2 border-b border-slate-200">
+            <button
+                class="px-4 py-2 font-medium transition-colors {selectedFormat === 'all' ? 'text-primary-600 border-b-2 border-primary-600' : 'text-slate-600 hover:text-slate-900'}"
+                on:click={() => selectedFormat = 'all'}
+            >
+                All
+            </button>
+            <button
+                class="px-4 py-2 font-medium transition-colors {selectedFormat === 'markdown' ? 'text-primary-600 border-b-2 border-primary-600' : 'text-slate-600 hover:text-slate-900'}"
+                on:click={() => selectedFormat = 'markdown'}
+            >
+                Markdown
+            </button>
+            <button
+                class="px-4 py-2 font-medium transition-colors {selectedFormat === 'html' ? 'text-primary-600 border-b-2 border-primary-600' : 'text-slate-600 hover:text-slate-900'}"
+                on:click={() => selectedFormat = 'html'}
+            >
+                HTML
+            </button>
+        </div>
+
+        <!-- Search Input -->
+        <div>
+            <input
+                type="text"
+                bind:value={searchQuery}
+                placeholder="Search posts by title..."
+                class="w-full max-w-md px-4 py-2 border border-slate-300 rounded-lg focus:border-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-600/20"
+            />
+        </div>
     </div>
 
     <!-- Stats -->
@@ -94,9 +138,9 @@
     </div>
 
     <!-- Posts List -->
-    {#if posts.length > 0}
+    {#if filteredPosts.length > 0}
     <div class="space-y-4">
-        {#each posts as post}
+        {#each filteredPosts as post}
         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
             <div class="flex items-start justify-between">
                 <div class="flex-1">
