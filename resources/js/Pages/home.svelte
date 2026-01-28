@@ -79,7 +79,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-slate-600 mb-1">Total Posts</p>
-                    <p class="text-3xl font-bold text-slate-900">{posts.length}</p>
+                    <p class="text-3xl font-bold text-slate-900">{filteredPosts.length}</p>
                 </div>
                 <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600">
