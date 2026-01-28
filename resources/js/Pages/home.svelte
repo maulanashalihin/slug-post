@@ -93,7 +93,7 @@
           <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm text-slate-600 mb-1">This Month</p>
+                    <p class="text-sm text-slate-600 mb-1">This Month Posts</p>
                     <p class="text-3xl font-bold text-slate-900">{filteredPosts.filter(p => new Date(p.created_at).getMonth() === new Date().getMonth()).length}</p>
                 </div>
                 <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
