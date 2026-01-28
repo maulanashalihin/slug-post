@@ -1,111 +1,89 @@
 /**
  * View Service
  * This service handles template rendering and view management for the application.
- * It uses Squirrelly as the templating engine and supports hot reloading in development.
+ * It uses Eta as the templating engine and supports hot reloading in development.
  */
 
-import { readFileSync, readdirSync, statSync } from "fs";
-import * as Sqrl from 'squirrelly' 
+import { readFileSync, readdirSync, statSync, watch, existsSync } from "fs";
+import { Eta } from 'eta'
 import path from "path";
-require("dotenv").config();
-
-/**
- * Cache object to store compiled HTML templates
- * Key: template path, Value: compiled HTML content
- */
-let html_files = {} as {
-   [key: string]: string;
-}; 
+import "dotenv/config";  
 
 // Set views directory based on environment
-let directory = process.env.NODE_ENV == 'development' ?    "resources/views" : "dist/views";
+let directory = "resources/views";
 
-// Set up file watcher for hot reloading in development
-if(process.env.NODE_ENV == 'development')
-   {
-      const chokidar = require("chokidar");
+// Configure Eta instance
+const eta = new Eta({
+   views: path.join(process.cwd(), directory),
+   cache: process.env.NODE_ENV !== 'development',
+   autoEscape: true
+});
 
-      var watcher = chokidar.watch('resources/views', { ignored: /^\./, persistent: true });
+// Cache for JS files in development mode
+let jsFilesCache: string[] = [];
 
-      watcher 
-      .on('change', (path) => {
+// Cache for Vite manifest in production
+interface ViteManifestEntry {
+   file: string;
+   name?: string;
+   src?: string;
+   isEntry?: boolean;
+   isDynamicEntry?: boolean;
+   imports?: string[];
+   dynamicImports?: string[];
+   css?: string[];
+}
 
-         importFiles(directory);
-         
-      })
-   }
+let viteManifest: Record<string, ViteManifestEntry> ;
 
 /**
- * Recursively imports and compiles template files from the views directory
- * Handles both regular templates and partials (reusable template components)
- * @param nextDirectory - Directory to scan for template files
+ * Load Vite manifest.json for production asset paths
  */
-function importFiles( nextDirectory = "resources/views") {
-   try {
-      if (!statSync(nextDirectory).isDirectory()) {
-         throw new Error(`Path ${nextDirectory} is not a directory`);
+function loadViteManifest() {
+   const manifestPath = path.join(process.cwd(), 'dist/.vite/manifest.json');
+   if (existsSync(manifestPath)) {
+      try {
+         const manifestContent = readFileSync(manifestPath, 'utf8');
+         viteManifest = JSON.parse(manifestContent);
+  
+      } catch (error) {
+         console.error('Error loading Vite manifest:', error);
+         viteManifest = {};
       }
-
-      const files = readdirSync(nextDirectory);
-
-      for (const filename of files) {
-         const results = statSync(path.join(nextDirectory, filename));
-
-         if (results.isDirectory()) {
-            importFiles(path.join(nextDirectory, filename)); // recursive call to get all files
-         } else {
-            const html = readFileSync(path.join(nextDirectory, filename), "utf8");
-
-            if(nextDirectory.includes("partials"))
-            {
-               const dir = nextDirectory.replace(directory+"/", ""); 
-               Sqrl.templates.define(dir + "/" + filename, Sqrl.compile(html))
-            } 
-            html_files[nextDirectory + "/" + filename] = html;
-         }
-      }
-   } catch (error) {
-      if (error.code === 'ENOENT') {
-         throw new Error(`Views directory not found: ${nextDirectory}. Please make sure the directory exists.`);
-      }
-      throw error; // Re-throw other errors
    }
 }
 
+if(process.env.NODE_ENV === 'production')
+{
+   loadViteManifest(); 
+}
+
+ 
+
 /**
  * Renders a template file with provided data
- * In development, it also handles asset path transformation for Vite
  * @param filename - Name of the template file to render
  * @param view_data - Data to be passed to the template
  * @returns Rendered HTML string
  */
-export function view(filename: string, view_data?: any) {
-    
-
-   const keys = Object.keys(view_data || {}); 
-
-   let html = html_files[directory + "/" + filename];
-   
-   if(process.env.NODE_ENV == 'development')
-   {
-      
-      const files = readdirSync("resources/js");
-
-      for (const filename of files) {
-     
-         
-         html = html.replace("/js/"+filename, `http://localhost:${process.env.VITE_PORT}/js/${filename}`);
+export function view(filename: string, view_data?: Record<string, unknown>) {
+   view_data = view_data || {};  
+   view_data.base_url = process.env.APP_URL; 
+   view_data.current_year = new Date().getFullYear(); 
+   view_data.asset = function(file: string){
+      if(process.env.NODE_ENV === 'production')
+      {
+        const entry = viteManifest[file];
+        if (!entry) return file;
+        return file.endsWith(".js") ? "/"+entry.file : entry.file.endsWith(".css") ? "/"+entry.file : "/"+entry.css?.[0] || "/"+file;
       }
-
-       
+      return `http://localhost:${process.env.VITE_PORT}/${file}`
    }
+
+   let rendered = eta.render(filename, view_data || {});
+    
  
-   html = Sqrl.render(html, {
-      ...view_data
-   }); 
-
-   return html;
+   
+   return rendered;
 }
-
-// Initialize by importing all template files
-export default importFiles(directory);
+ 

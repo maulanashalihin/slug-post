@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - SlugPost</title>
     <meta name="description" content="Terms of Service for SlugPost - A free markdown publishing platform">
-    <link rel="stylesheet" href="/js/index.css">
+      <link rel="stylesheet" href="<%= it.asset('js/index.css') %>">
     <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 min-h-screen">
-    {{@include('partials/navbar.html')/}}
+    <%~ include('partials/navbar.html') %>
     
     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         <!-- Header -->
@@ -283,6 +283,6 @@
         </div>
     </div>
 
-    {{@include('partials/footer.html')/}}
+    <%~ include('partials/footer.html') %>
 </body>
 </html>

@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SlugPost - Publish & Share Markdown Instantly</title>
     <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
-    <link rel="stylesheet" href="/js/index.css">
+      <link rel="stylesheet" href="<%= it.asset('js/index.css') %>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
    
 </head>
 <body  >
-    <div id="app" data-page="{{it.page}}"></div>
+    <div id="app" data-page="<%= it.page %>"></div>
  
  
     <script type="module" src="/js/app.js"></script>

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{it.title}} - SlugPost</title>
-    <meta name="description" content="{{it.description}}">
-    <meta property="og:title" content="{{it.title}}">
-    <meta property="og:description" content="{{it.description}}">
+    <title><%= it.title %> - SlugPost</title>
+    <meta name="description" content="<%= it.description %>">
+    <meta property="og:title" content="<%= it.title %>">
+    <meta property="og:description" content="<%= it.description %>">
     <meta property="og:type" content="article">
-    <link rel="stylesheet" href="/js/index.css">
+      <link rel="stylesheet" href="<%= it.asset('js/index.css') %>">
    <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
@@ -63,24 +63,24 @@
                                 <line x1="8" x2="8" y1="2" y2="6"></line>
                                 <line x1="3" x2="21" y1="10" y2="10"></line>
                             </svg>
-                            <span id="createdAt">{{it.created_at}}</span>
+                            <span id="createdAt"><%= it.created_at %></span>
                         </div>
                         <div class="flex items-center space-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
-                            <span>{{it.view_count}} views</span>
+                            <span><%= it.view_count %> views</span>
                         </div>
-                        {{@if(it.author)}}
+                        <% if (it.author) { %>
                         <div class="flex items-center space-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
-                            <span>{{it.author.name}}</span>
+                            <span><%= it.author.name %></span>
                         </div>
-                        {{/if}}
+                        <% } %>
                     </div>
                     <button 
                         onclick="sharePost()"
@@ -99,7 +99,7 @@
             <!-- Post Content -->
             <div class="px-4 sm:px-8 py-6 sm:py-10">
                 <div class="prose prose-slate max-w-none prose-headings:font-bold prose-h1:text-2xl sm:prose-h1:text-4xl prose-h1:mb-3 sm:prose-h1:mb-4 prose-h2:text-xl sm:prose-h2:text-3xl prose-h2:mt-6 sm:prose-h2:mt-8 prose-h2:mb-2 sm:prose-h2:mb-3 prose-h3:text-lg sm:prose-h3:text-2xl prose-h3:mt-4 sm:prose-h3:mt-6 prose-h3:mb-2 prose-p:text-slate-700 prose-p:leading-relaxed prose-p:text-sm sm:prose-p:text-base prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline prose-code:text-primary-600 prose-code:bg-slate-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-xs sm:prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:text-xs sm:prose-pre:text-sm prose-pre:overflow-x-auto prose-img:rounded-lg prose-img:shadow-lg prose-ul:text-sm sm:prose-ul:text-base prose-ol:text-sm sm:prose-ol:text-base">
-                    {{* it.content}}
+                    <%~ it.content %>
                 </div>
             </div>
 
@@ -107,7 +107,7 @@
             <div class="border-t border-slate-200 px-4 sm:px-8 py-4 sm:py-6 bg-slate-50">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
                     <div class="text-xs sm:text-sm text-slate-600 order-2 sm:order-1">
-                        <span>Last updated: <span id="updatedAt">{{it.updated_at}}</span></span>
+                        <span>Last updated: <span id="updatedAt"><%= it.updated_at %></span></span>
                     </div>
                     <a 
                         href="/"
@@ -128,7 +128,7 @@
 
     <!-- Footer -->
    
-    {{@include('partials/footer.html')/}}
+    <%~ include('partials/footer.html') %>
 
     <script>
         // Format dates

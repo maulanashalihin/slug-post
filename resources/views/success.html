@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Success - SlugPost</title>
     <meta name="description" content="Your post has been published successfully!">
-    <link rel="stylesheet" href="/js/index.css">
+      <link rel="stylesheet" href="<%= it.asset('js/index.css') %>">
   <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 </head>
@@ -209,7 +209,7 @@
     </main>
         <!-- Footer -->
    
-    {{@include('partials/footer.html')/}}
+    <%~ include('partials/footer.html') %>
 
 
     <script>
