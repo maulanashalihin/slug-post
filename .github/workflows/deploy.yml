@@ -28,7 +28,7 @@ jobs:
         script: |
           # Perintah-perintah ini akan dijalankan di server produksi Anda
           echo "🚀 Starting deployment..."
-          cd /root/slug-post/build # Ganti dengan path ke direktori proyek Anda
+          cd /root/slug-post # Ganti dengan path ke direktori proyek Anda
           
           echo " pulling code from GitHub..."
           git pull origin main
@@ -46,9 +46,10 @@ jobs:
 
           echo " installing dependencies..."
           # Contoh untuk Node.js (sesuaikan dengan teknologi Anda)
-          npm install 
+          # npm install 
+          # npm run build
   
-          pm2 reload slugpost
+          # pm2 reload slugpost
            
           
           echo "✅ Deployment finished!"
