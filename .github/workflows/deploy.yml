@@ -46,10 +46,10 @@ jobs:
 
           echo " installing dependencies..."
           # Contoh untuk Node.js (sesuaikan dengan teknologi Anda)
-          # npm install 
-          # npm run build
+           npm install 
+           npm run build
   
-          # pm2 reload slugpost
+           pm2 reload slugpost
            
           
           echo "✅ Deployment finished!"
