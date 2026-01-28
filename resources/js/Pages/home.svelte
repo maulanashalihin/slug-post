@@ -90,26 +90,11 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-sm text-slate-600 mb-1">Total Views</p>
-                    <p class="text-3xl font-bold text-slate-900">{posts.reduce((sum, post) => sum + post.view_count, 0)}</p>
-                </div>
-                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600">
-                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-slate-600 mb-1">This Month</p>
-                    <p class="text-3xl font-bold text-slate-900">{posts.filter(p => new Date(p.created_at).getMonth() === new Date().getMonth()).length}</p>
+                    <p class="text-3xl font-bold text-slate-900">{filteredPosts.filter(p => new Date(p.created_at).getMonth() === new Date().getMonth()).length}</p>
                 </div>
                 <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600">
@@ -121,6 +106,23 @@
                 </div>
             </div>
         </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-slate-600 mb-1">Total Views</p>
+                    <p class="text-3xl font-bold text-slate-900">{filteredPosts.reduce((sum, post) => sum + post.view_count, 0)}</p>
+                </div>
+                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+      
     </div>
 
     <!-- Create New Post Button -->
