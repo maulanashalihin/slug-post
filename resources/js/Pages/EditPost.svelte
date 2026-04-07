@@ -115,6 +115,11 @@
             e.preventDefault();
             generatePreview();
         }
+        // Ctrl/Cmd + E to edit
+        if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
+            e.preventDefault();
+            activeTab = 'edit';
+        }
     }
 
     onMount(() => {
@@ -269,6 +274,9 @@
                 <span>•</span>
                 <kbd class="px-2 py-1 bg-slate-100 rounded border border-slate-300">⌘P</kbd>
                 <span>to preview</span>
+                <span>•</span>
+                <kbd class="px-2 py-1 bg-slate-100 rounded border border-slate-300">⌘E</kbd>
+                <span>to edit</span>
             </div>
         </div>
     </div>

@@ -129,6 +129,14 @@
             e.preventDefault();
             submitForm();
         }
+        if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
+            e.preventDefault();
+            viewMode = 'editor';
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+            e.preventDefault();
+            viewMode = 'preview';
+        }
     }
 
     function handleEditorKeydown(e) {
@@ -367,6 +375,14 @@
                         <span class="flex items-center space-x-1">
                             <kbd class="px-1.5 py-0.5 bg-[#2c313a] rounded text-[10px] border border-[#3e4451]">⌘S</kbd>
                             <span>Save</span>
+                        </span>
+                        <span class="flex items-center space-x-1">
+                            <kbd class="px-1.5 py-0.5 bg-[#2c313a] rounded text-[10px] border border-[#3e4451]">⌘P</kbd>
+                            <span>Preview</span>
+                        </span>
+                        <span class="flex items-center space-x-1">
+                            <kbd class="px-1.5 py-0.5 bg-[#2c313a] rounded text-[10px] border border-[#3e4451]">⌘E</kbd>
+                            <span>Edit</span>
                         </span>
                         <span class="flex items-center space-x-1">
                             <kbd class="px-1.5 py-0.5 bg-[#2c313a] rounded text-[10px] border border-[#3e4451]">Tab</kbd>
