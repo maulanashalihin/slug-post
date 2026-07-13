@@ -6,4 +6,11 @@ dev.sqlite3
 data
 build
 # dist
-.llm-wiki/
+# LLM Wiki — auto-generated dirs only (wiki/ content is tracked)
+.llm-wiki/meta/
+.llm-wiki/raw/
+.llm-wiki/outputs/
+.llm-wiki/.discoveries/
+.llm-wiki/templates/
+.llm-wiki/config.json
+.llm-wiki/WIKI_SCHEMA.md
