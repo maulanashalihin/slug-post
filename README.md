@@ -13,6 +13,7 @@
 I built this because I honestly felt the need. You know how it is—after using AI tools (ChatGPT/Gemini/etc.), you get markdown text output, but then you're stuck when trying to share the results...
 
 **The Problems:**
+
 - 📄 Send a .md file → people are too lazy to download it
 - 📋 Copy-paste directly to chat/email → formatting gets destroyed 😭
 - 🔄 Manual conversion → tedious and time-consuming
@@ -51,6 +52,7 @@ SlugPost uses a clean, minimal color palette focused on professionalism and clar
 ### Design Philosophy
 
 **Less is More**: We intentionally limit our color palette to maintain a professional, clean aesthetic:
+
 - **Primary Blue** - Used sparingly for main actions and branding
 - **Slate Neutrals** - The workhorse colors for 90% of the UI
 - **Orange** - Reserved exclusively for warnings and critical information
@@ -85,13 +87,15 @@ SlugPost is built on top of **[Laju.dev](https://laju.dev)**, a modern full-stac
 Learn more at [laju.dev](https://laju.dev)
 
 ### Backend
+
 - **[HyperExpress](https://github.com/kartikk221/hyper-express)** - High-performance web server
-- **[Knex.js](https://knexjs.org)** - SQL query builder
-- **[BetterSQLite3](https://github.com/WiseLibs/better-sqlite3)** - Fast, embedded database
+- **[better-sqlite3](https://github.com/WiseLibs/better-sqlite3)** - Fast, embedded database (via `app/repositories/`)
+- **[Knex.js](https://knexjs.org)** - Database migrations (devDependency only)
 - **[Squirrelly](https://squirrelly.js.org/)** - Lightweight template engine
 - **TypeScript** - Type-safe development
 
 ### Frontend
+
 - **[Svelte 5](https://svelte.dev)** - Reactive UI framework
 - **[Inertia.js](https://inertiajs.com)** - Modern monolith architecture
 - **[TailwindCSS](https://tailwindcss.com)** - Utility-first CSS
@@ -100,7 +104,7 @@ Learn more at [laju.dev](https://laju.dev)
 
 ## 📋 Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ## 🚀 Quick Start
@@ -183,6 +187,7 @@ APP_URL=http://localhost:3000
 ### Example Workflow
 
 **Step 1: Publish**
+
 ```markdown
 # My Awesome Post
 
@@ -195,10 +200,12 @@ This is **bold** and this is *italic*.
 ```
 
 **Step 2: Receive URLs**
+
 - Public URL: `https://slugpost.com/my-awesome-post`
 - Edit URL: `https://slugpost.com/my-awesome-post/edit/7f3a9b2c1d` ⚠️ Save this!
 
 **Step 3: Share**
+
 - Share the public URL with anyone
 - Keep the edit URL private for future updates
 
@@ -207,23 +214,28 @@ This is **bold** and this is *italic*.
 **Scenario: You want to claim an anonymous post**
 
 **Step 1: Edit Anonymous Post**
+
 - Visit your edit URL: `https://slugpost.com/my-awesome-post/edit/7f3a9b2c1d`
 - Notice the post has no author (anonymous)
 
 **Step 2: See Claim Option**
+
 - On the edit page, you'll see a "Claim This Post" button
 - Click to proceed with claiming
 
 **Step 3: Login or Register**
+
 - If not logged in, you'll be redirected to login/register
 - Create an account or login with existing credentials
 
 **Step 4: Claim Completed**
+
 - After authentication, the post is automatically claimed
 - The post's `author_id` is set to your user ID
 - You can now access this post from your dashboard
 
 **Step 5: Manage Your Posts**
+
 - Visit your dashboard to see all claimed posts
 - Edit posts without needing the edit link
 - View statistics and manage content
@@ -401,13 +413,14 @@ With over 15 years of experience in software development, I specialize in buildi
 ### Need Help Building Your Application?
 
 I'm available for consulting and custom development projects. Whether you need:
+
 - 🚀 SaaS application development
 - 💼 Full-stack web applications
 - 🔧 API development and integration
 - 📱 Modern responsive interfaces
 - ⚡ Performance optimization
 
-Feel free to reach out at **maulana@drip.id**
+Feel free to reach out at **<maulana@drip.id>**
 
 ### Support This Project
 
@@ -423,6 +436,7 @@ Your support helps keep this project free and actively maintained!
 ### Feedback & Contributions
 
 I'm very open to feedback! If you have suggestions, bug reports, or feature requests, feel free to:
+
 - Open an issue on [GitHub](https://github.com/maulanashalihin/slug-post/issues)
 - Or contribute directly via Pull Request
 
@@ -436,6 +450,7 @@ I'm very open to feedback! If you have suggestions, bug reports, or feature requ
 ## 📮 Support
 
 If you have any questions or need help, please:
+
 - Open an issue on [GitHub](https://github.com/maulanashalihin/slug-post/issues)
 - Star the repository if you find it useful ⭐
 - Share it with others who might benefit from it

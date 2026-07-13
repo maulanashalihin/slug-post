@@ -27,14 +27,10 @@ Seluruh pengetahuan detail ada di `.llm-wiki/wiki/`:
 - **concepts/laju-architecture** → arsitektur & middleware
 - **concepts/route-structure** → semua routes
 - **concepts/database-schema** → schema & auth flow
-- **concepts/code-conventions** → controller patterns, Svelte patterns
+- **concepts/code-conventions** → controller patterns + repository pattern
+- **concepts/svelte-inertia-pages** → Svelte 5 + Inertia patterns
+- **concepts/eta-ssr-templates** → Eta template engine for SSR
 - **concepts/dev-workflow** → commands & env vars
-
-## 📘 Skills (Coding Reference)
-
-- **skills/create-controller.md** — controller patterns + validation
-- **skills/create-svelte-inertia-page.md** — Svelte 5 + Inertia patterns
-- **skills/deployment-guide.md** — deployment workflow
 
 ## ⚡ Key Conventions
 
