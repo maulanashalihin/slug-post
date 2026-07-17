@@ -20,6 +20,20 @@ const config: { [key: string]: Knex.Config } = {
 			directory: "./seeds",
 		},
 	},
+	production: {
+		client: "better-sqlite3",
+		connection: {
+			filename: path.join(
+				process.cwd(),
+				"data",
+				process.env.DB_FILENAME || defaultFile,
+			),
+		},
+		useNullAsDefault: true,
+		seeds: {
+			directory: "./seeds",
+		},
+	},
 };
 
 export default config;
