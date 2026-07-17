@@ -7,6 +7,12 @@
     let selectedFormat = 'all';
     let searchQuery = '';
 
+    // Delete modal state
+    let showDeleteModal = false;
+    let deletingPost = null;
+    let isDeleting = false;
+    let deleteError = '';
+
     $: filteredPosts = posts.filter(post => {
         const formatMatch = selectedFormat === 'all' || post.format === selectedFormat;
         const searchMatch = post.title.toLowerCase().includes(searchQuery.toLowerCase());
@@ -20,6 +26,47 @@
             month: 'long',
             day: 'numeric'
         });
+    }
+
+    function confirmDelete(post) {
+        deletingPost = post;
+        deleteError = '';
+        showDeleteModal = true;
+    }
+
+    function cancelDelete() {
+        showDeleteModal = false;
+        deletingPost = null;
+        deleteError = '';
+    }
+
+    async function handleDelete() {
+        if (!deletingPost) return;
+
+        isDeleting = true;
+        deleteError = '';
+
+        try {
+            const res = await fetch(`/api/posts/${deletingPost.id}/delete`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.error || 'Failed to delete post');
+            }
+
+            // Remove post from the local list
+            posts = posts.filter(p => p.id !== deletingPost.id);
+            showDeleteModal = false;
+            deletingPost = null;
+        } catch (err) {
+            deleteError = err.message;
+        } finally {
+            isDeleting = false;
+        }
     }
 </script>
 
@@ -226,6 +273,18 @@
                                 <span>Visual</span>
                             </a>
                         {/if}
+                        <span class="text-slate-300">|</span>
+                        <button
+                            on:click={() => confirmDelete(post)}
+                            class="inline-flex items-center space-x-1 text-sm text-red-500 hover:text-red-700 font-medium transition-colors"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 6h18"></path>
+                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                            </svg>
+                            <span>Delete</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -257,6 +316,88 @@
     {/if}
 
 </main>
+
+<!-- Delete Confirmation Modal -->
+{#if showDeleteModal}
+<div 
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+    on:click={() => cancelDelete()}
+    on:keydown={(e) => e.key === 'Escape' && cancelDelete()}
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="delete-modal-title"
+    tabindex="-1"
+>
+    <div 
+        class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all"
+        on:click|stopPropagation
+        on:keydown|stopPropagation
+        role="document"
+        tabindex="-1"
+    >
+        <!-- Warning Icon -->
+        <div class="mx-auto w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
+                <path d="M3 6h18"></path>
+                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+            </svg>
+        </div>
+
+        <!-- Title -->
+        <h3 id="delete-modal-title" class="text-xl font-bold text-slate-900 text-center mb-2">
+            Delete Post
+        </h3>
+
+        <!-- Message -->
+        <p class="text-slate-600 text-center mb-2">
+            Are you sure you want to delete this post?
+        </p>
+        {#if deletingPost}
+            <p class="text-slate-500 text-sm text-center mb-6 font-medium">
+                &ldquo;{deletingPost.title}&rdquo;
+            </p>
+        {/if}
+
+        <!-- Error message -->
+        {#if deleteError}
+            <div class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                <p class="text-sm text-red-700">{deleteError}</p>
+            </div>
+        {/if}
+
+        <p class="text-xs text-slate-400 text-center mb-6">
+            This action cannot be undone. The post and all its data will be permanently removed.
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex space-x-3">
+            <button
+                on:click={() => cancelDelete()}
+                disabled={isDeleting}
+                class="flex-1 px-4 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-medium disabled:opacity-50"
+            >
+                Cancel
+            </button>
+            <button
+                on:click={handleDelete}
+                disabled={isDeleting}
+                class="flex-1 px-4 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium disabled:opacity-50 flex items-center justify-center space-x-2"
+            >
+                {#if isDeleting}
+                    <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                    </svg>
+                    <span>Deleting...</span>
+                {:else}
+                    <span>Yes, Delete</span>
+                {/if}
+            </button>
+        </div>
+    </div>
+</div>
+{/if}
 
 <!-- Footer -->
 <footer class="container mx-auto px-6 py-8 mt-16 border-t border-slate-200">

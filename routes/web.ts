@@ -122,6 +122,13 @@ Route.post("/change-password", [Auth], AuthController.changePassword);
 Route.delete("/users", [Auth], AuthController.deleteUsers);
 
 /**
+ * Post Delete Route
+ * ------------------------------------------------
+ * POST /api/posts/:id/delete - Delete a post (auth required, author only)
+ */
+Route.post("/api/posts/:id/delete", [Auth], PostController.destroy);
+
+/**
  * Static Asset Handling Routes
  * 
  * 1. Dist Assets (/assets/:file)

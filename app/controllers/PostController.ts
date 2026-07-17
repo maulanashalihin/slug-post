@@ -415,7 +415,7 @@ class PostController {
 	}
 
 	/**
-	 * Show settings page
+	 * Post Settings page
 	 * GET /:slug/settings/:token
 	 */
 	public async settings(request: Request, response: Response) {
@@ -571,6 +571,41 @@ class PostController {
 				.status(500)
 				.type("html")
 				.send("<h1>Error loading visual builder</h1>");
+		}
+	}
+
+	/**
+	 * Delete a post by ID — only the author can delete
+	 * POST /api/posts/:id/delete
+	 */
+	public async destroy(request: Request, response: Response) {
+		try {
+			const { id } = request.params;
+			const postId = parseInt(id, 10);
+
+			if (!postId) {
+				return response.status(400).json({ error: "Invalid post ID" });
+			}
+
+			const post = posts.findById(postId);
+			if (!post) {
+				return response.status(404).json({ error: "Post not found" });
+			}
+
+			// Only the author can delete
+			if (!request.user || post.author_id !== request.user.id) {
+				return response.status(403).json({ error: "You can only delete your own posts" });
+			}
+
+			posts.delete(postId, request.user.id);
+
+			return response.json({
+				success: true,
+				message: "Post deleted successfully",
+			});
+		} catch (error) {
+			console.error("Error deleting post:", error);
+			return response.status(500).json({ error: "Failed to delete post" });
 		}
 	}
 }

@@ -21,6 +21,13 @@ export interface Post {
 }
 
 export const posts = {
+	/** Find a single post by id */
+	findById(id: number): Post | undefined {
+		return db.prepare("SELECT * FROM posts WHERE id = ?").get(id) as
+			| Post
+			| undefined;
+	},
+
 	/** Find a single post by slug */
 	findBySlug(slug: string): Post | undefined {
 		return db.prepare("SELECT * FROM posts WHERE slug = ?").get(slug) as
@@ -145,6 +152,13 @@ export const posts = {
 				"SELECT id, slug, title, format, view_count, created_at, updated_at, edit_token FROM posts WHERE author_id = ? ORDER BY created_at DESC",
 			)
 			.all(authorId) as Post[];
+	},
+
+	/** Delete a post by id — only the author can delete */
+	delete(id: number, authorId: string) {
+		return db
+			.prepare("DELETE FROM posts WHERE id = ? AND author_id = ?")
+			.run(id, authorId);
 	},
 
 	/** All slugs + updated_at for sitemap */

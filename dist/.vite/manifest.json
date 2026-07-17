@@ -1,0 +1,22 @@
+{
+  "js/app.js": {
+    "file": "assets/app-CROJnqdZ.js",
+    "name": "app",
+    "src": "js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-B-scZbTG.css"
+    ]
+  },
+  "js/index.css": {
+    "file": "assets/css-Bp1bTCdI.css",
+    "src": "js/index.css",
+    "isEntry": true
+  },
+  "js/index.js": {
+    "file": "assets/index-l0sNRNKZ.js",
+    "name": "index",
+    "src": "js/index.js",
+    "isEntry": true
+  }
+}
